@@ -1,20 +1,20 @@
 ---
-- name: Copy SR image from root to /var/lib/libvirt/images
-  copy:
-    src: ~/sros-vm.qcow2
-    dest: /var/lib/libvirt/images/{{ item.name }}.qcow2
-    owner: qemu
-    group: qemu
-    mode: u=rw,g=r,o=r
-  with_items: '{{ VM }}'
+# - name: Copy SR image from root to /var/lib/libvirt/images
+#   copy:
+#     src: ~/sros-vm.qcow2
+#     dest: /var/lib/libvirt/images/{{ item.name }}.qcow2
+#     owner: qemu
+#     group: qemu
+#     mode: u=rw,g=r,o=r
+#   with_items: '{{ VM }}'
 
-- name: Defining Networking
-  template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
-  with_dict: "{{ netwk }}"
+# - name: Defining Networking
+#   template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
+#   with_dict: "{{ netwk }}"
 
-- name: Bring-Up SR-Lab Bridge Ports
-  command: ifup ifcfg-{{ item.key }}-BR
-  with_dict: "{{ netwk }}"
+# - name: Bring-Up SR-Lab Bridge Ports
+#   command: ifup ifcfg-{{ item.key }}-BR
+#   with_dict: "{{ netwk }}"
    
 - name: Defining 5 Interface SR VM's
   virt:
@@ -23,19 +23,19 @@
     xml: "{{ lookup('template', 'vm_template5.xml.j2') }}"
   with_dict: '{{ KVM5 }}'
 
-- name: Defining 4 Interface SR VM's
-  virt:
-    name: "{{ item.value.vmname }}"
-    command: define
-    xml: "{{ lookup('template', 'vm_template4.xml.j2') }}"
-  with_dict: '{{ KVM4 }}'
+# - name: Defining 4 Interface SR VM's
+#   virt:
+#     name: "{{ item.value.vmname }}"
+#     command: define
+#     xml: "{{ lookup('template', 'vm_template4.xml.j2') }}"
+#   with_dict: '{{ KVM4 }}'
 
-- name: Defining 3 Interface SR VM's
-  virt:
-    name: "{{ item.value.vmname }}"
-    command: define
-    xml: "{{ lookup('template', 'vm_template3.xml.j2') }}"
-  with_dict: '{{ KVM3 }}'
+# - name: Defining 3 Interface SR VM's
+#   virt:
+#     name: "{{ item.value.vmname }}"
+#     command: define
+#     xml: "{{ lookup('template', 'vm_template3.xml.j2') }}"
+#   with_dict: '{{ KVM3 }}'
 
 - name: Starting SR VMs
   virt:
@@ -43,26 +43,41 @@
     state: running
   with_items: '{{ VM }}'
 
-- name: Destroying SR VMs
-  virt:
-    name: "{{ item.name }}"
-    state: destroyed
-  with_items: '{{ VM }}'
+- name: set BoF
+  telnet:
+    port: 2701
+    user: admin
+    password: admin
+    login_prompt: "Login: "
+    prompts:
+      - "#"
+    command:
+        - bof address 10.0.10.15/24
+        - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+        - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+        - bof save
+        - configure system hostname R1
 
-- name: Undefining SR VMs
-  virt:
-    name: "{{ item.name }}"
-    command: undefine
-  with_items: '{{ VM }}'
+# - name: Destroying SR VMs
+#   virt:
+#     name: "{{ item.name }}"
+#     state: destroyed
+#   with_items: '{{ VM }}'
 
-- name: Bring-Down SR-Lab Bridge Ports
-  command: ifdown ifcfg-{{ item.key }}-BR
-  with_dict: "{{ netwk }}"
+# - name: Undefining SR VMs
+#   virt:
+#     name: "{{ item.name }}"
+#     command: undefine
+#   with_items: '{{ VM }}'
 
-- name: Delete SR-Lab Bridge Ports
-  file: path=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR state=absent
-  with_dict: "{{ netwk }}" 
+# - name: Bring-Down SR-Lab Bridge Ports
+#   command: ifdown ifcfg-{{ item.key }}-BR
+#   with_dict: "{{ netwk }}"
 
-- name: Remove SR Images
-  file: path=/var/lib/libvirt/images/{{ item.name }}.qcow2 state=absent
-  with_items: "{{ VM }}" 
+# - name: Delete SR-Lab Bridge Ports
+#   file: path=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR state=absent
+#   with_dict: "{{ netwk }}" 
+
+# - name: Remove SR Images
+#   file: path=/var/lib/libvirt/images/{{ item.name }}.qcow2 state=absent
+#   with_items: "{{ VM }}" 

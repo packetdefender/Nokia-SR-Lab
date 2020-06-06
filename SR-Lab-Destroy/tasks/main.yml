@@ -1,0 +1,24 @@
+---
+- name: Destroying SR VMs
+  virt:
+    name: "{{ item.name }}"
+    state: destroyed
+  with_items: '{{ VM }}'
+
+- name: Undefining SR VMs
+  virt:
+    name: "{{ item.name }}"
+    command: undefine
+  with_items: '{{ VM }}'
+
+- name: Bring-Down SR-Lab Bridge Ports
+  command: ifdown ifcfg-{{ item.key }}-BR
+  with_dict: "{{ netwk }}"
+
+- name: Delete SR-Lab Bridge Ports
+  file: path=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR state=absent
+  with_dict: "{{ netwk }}" 
+
+- name: Remove SR Images
+  file: path=/var/lib/libvirt/images/{{ item.name }}.qcow2 state=absent
+  with_items: "{{ VM }}" 

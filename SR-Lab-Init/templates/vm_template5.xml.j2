@@ -48,9 +48,16 @@
                         <source bridge="{{ item.value.br5 }}"/>
                         <model type="virtio"/>
                 </interface>
-
-		<console type='pty' tty='/dev/pts/1'>
-      <source path='/dev/pts/1'/>
+	<serial type='tcp'>
+      <source mode='bind' host='0.0.0.0' service='{{ item.value.serial_port }}'/>
+      <protocol type='telnet'/>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+    </serial>
+    <console type='tcp'>
+      <source mode='bind' host='0.0.0.0' service='{{ item.value.serial_port }}'/>
+      <protocol type='telnet'/>
       <target type='serial' port='0'/>
       <alias name='serial0'/>
     </console>
