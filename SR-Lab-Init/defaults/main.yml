@@ -1,0 +1,34 @@
+---
+netwk:
+    R1R2:
+        dev_name: R1R2
+    R1R3:
+        dev_name: R1R3
+    R1R4:
+        dev_name: R1R4
+    R1R5:
+        dev_name: R1R5
+    R2R3:
+        dev_name: R2R3
+    R2R4:
+        dev_name: R2R4
+    R2R6:
+        dev_name: R2R6
+    R3R4:
+        dev_name: R3R4
+    R3R7:
+        dev_name: R3R7
+    R4R8:
+        dev_name: R4R8
+    R5R6:
+        dev_name: R5R6
+    R5R9:
+        dev_name: R5R9
+    R6R10:
+        dev_name: R6R10
+    R7R8:
+        dev_name: R7R8
+    R7R11:
+        dev_name: R7R11
+    R8R12:
+        dev_name: R8R12

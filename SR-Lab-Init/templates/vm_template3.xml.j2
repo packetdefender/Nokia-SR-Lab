@@ -1,0 +1,50 @@
+<domain type="kvm">
+	<name>{{ item.value.vmname }}</name>
+	<description>{{ item.value.desc }}</description>
+	<memory>4194304</memory>
+	<currentMemory>4194304</currentMemory>
+	<cpu mode="custom" match="minimum">
+		<model>SandyBridge</model>
+		<vendor>Intel</vendor>
+	</cpu>
+	<vcpu current="2">2</vcpu>
+	<sysinfo type="smbios">
+		<system>
+			<entry name="product">TIMOS:chassis=SR-1 slot=A card=cpm-1 mda/1=me12-100gb-qsfp28 mda/2=me12-100gb-qsfp28</entry>
+		</system>
+	</sysinfo>
+	<os>
+		<type arch="x86_64" machine="pc">hvm</type>
+		<smbios mode="sysinfo"/>
+	</os>
+	<clock offset="utc">
+		<timer name="pit" tickpolicy="delay"/>
+		<timer name="rtc" tickpolicy="delay"/>
+	</clock>
+	<devices>
+		<emulator>/usr/libexec/qemu-kvm</emulator>
+		<disk type="file" device="disk">
+			<driver name="qemu" type="qcow2" cache="none"/>
+			<source file="/var/lib/libvirt/images/{{ item.value.qcow_image }}.qcow2"/>
+			<target dev="hda" bus="virtio"/>
+		</disk>
+		                <interface type="bridge">
+                        <source bridge="{{ item.value.br1 }}"/>
+                        <model type="virtio"/>
+                </interface>
+		<interface type="bridge">
+			<source bridge="{{ item.value.br2 }}"/>
+			<model type="virtio"/>
+		</interface>
+                <interface type="bridge">
+                        <source bridge="{{ item.value.br3 }}"/>
+                        <model type="virtio"/>
+                </interface>
+		<console type='pty' tty='/dev/pts/1'>
+      <source path='/dev/pts/1'/>
+      <target type='serial' port='0'/>
+      <alias name='serial0'/>
+    </console>
+	</devices>
+	<seclabel type="none"/>
+</domain>
