@@ -9,10 +9,10 @@ cli:
 defcfg:
     R1:
         port: 2701
-        address: 10.0.10.15
+        address: 10.0.10.15/24
     R2:
         port: 2702
-        address: 10.0.10.16
+        address: 10.0.10.16/24
             
 
 hostname:

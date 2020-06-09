@@ -48,9 +48,10 @@
     port: 2701
     user: admin
     password: admin
+    send_newline: yes
     login_prompt: "Login: "
     prompts:
-      - "#"
+      - "vSIM#"
     command:
         - bof address 10.0.10.15/24
         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
@@ -62,37 +63,165 @@
     port: 2702
     user: admin
     password: admin
+    send_newline: yes
     login_prompt: "Login: "
     prompts:
-      - "#"
+      - "vSIM#"
     command:
         - bof address 10.0.10.16/24
         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
         - bof save
 
+# - name: Set BoF Address R3 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
 
 
-# - name: Destroying SR VMs
-#   virt:
-#     name: "{{ item.name }}"
-#     state: destroyed
-#   with_items: '{{ VM }}'
+# - name: Set BoF Address R4 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
 
-# - name: Undefining SR VMs
-#   virt:
-#     name: "{{ item.name }}"
-#     command: undefine
-#   with_items: '{{ VM }}'
+# - name: Set BoF Address R5 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
 
-# - name: Bring-Down SR-Lab Bridge Ports
-#   command: ifdown ifcfg-{{ item.key }}-BR
-#   with_dict: "{{ netwk }}"
+# - name: Set BoF Address R6 + Routes
+#   telnet:
+#     port: 2702
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.16/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
 
-# - name: Delete SR-Lab Bridge Ports
-#   file: path=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR state=absent
-#   with_dict: "{{ netwk }}" 
+# - name: Set BoF Address R7 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
 
-# - name: Remove SR Images
-#   file: path=/var/lib/libvirt/images/{{ item.name }}.qcow2 state=absent
-#   with_items: "{{ VM }}" 
+
+# - name: Set BoF Address R8 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
+
+# - name: Set BoF Address R9 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
+
+# - name: Set BoF Address R10 + Routes
+#   telnet:
+#     port: 2702
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.16/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
+
+# - name: Set BoF Address R11 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save
+
+
+# - name: Set BoF Address R12 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.10.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+#         - bof save

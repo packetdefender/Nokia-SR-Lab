@@ -1,5 +1,6 @@
 ---
   - hosts: KVMHosts
     become: true
+    gather_facts: false
     roles:
       - role: SR-Lab-Init

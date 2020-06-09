@@ -22,3 +22,8 @@
 - name: Remove SR Images
   file: path=/var/lib/libvirt/images/{{ item.name }}.qcow2 state=absent
   with_items: "{{ VM }}" 
+
+- name: Reboot Server
+  reboot:
+    reboot_timeout: 300
+
