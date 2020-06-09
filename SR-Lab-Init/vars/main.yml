@@ -10,16 +10,19 @@ KVM5:
           br4: R1R3-BR
           br5: R1R4-BR
           serial_port: 2701
+
           
-#     R02_VM:
-#           vmname: R2
-#           qcow_image: R2
-#           desc: R2_XML_FILE
-#           br1: MGMT-BR
-#           br2: R2R6-BR
-#           br3: R1R2-BR
-#           br4: R2R4-BR
-#           br5: R2R3-BR
+    R02_VM:
+          vmname: R2
+          qcow_image: R2
+          desc: R2_XML_FILE
+          br1: MGMT-BR
+          br2: R2R6-BR
+          br3: R1R2-BR
+          br4: R2R4-BR
+          br5: R2R3-BR
+          serial_port: 2702
+
 #     R03_VM:
 #           vmname: R3
 #           qcow_image: R3
@@ -102,20 +105,17 @@ KVM5:
 #           br3: R8R12-BR
 VM:
     - name: R1
-#     - name: R2
-#     - name: R3
-#     - name: R4
-#     - name: R5
-#     - name: R6
-#     - name: R7
-#     - name: R8
-#     - name: R9
-#     - name: R10
-#     - name: R11
-#     - name: R12
-cli:
-  host: 127.0.0.1:2701
-  username: admin
-  password: admin
-  transport: cli
-  port: 23
+    - name: R2
+    # - name: R3
+    # - name: R4
+    # - name: R5
+    # - name: R6
+    # - name: R7
+    # - name: R8
+    # - name: R9
+    # - name: R10
+    # - name: R11
+    # - name: R12
+
+
+    

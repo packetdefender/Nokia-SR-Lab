@@ -2,4 +2,4 @@
   - hosts: KVMHosts
     become: true
     roles:
-      - role: SR-Lab-Init
+      - role: SR-Lab-Destroy

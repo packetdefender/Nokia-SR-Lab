@@ -1,0 +1,46 @@
+---
+# tasks file for SR-Lab-Setup
+---
+- name: Set BoF 
+    port: {{ item.port }}
+    user: admin
+    password: admin
+    login_prompt: "Login: "
+    prompts:
+    - "#"
+    command:
+        - bof address {{ item.address }}
+        - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
+        - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+        - bof save
+    with_items: "{{ defcfg }}"
+
+    - name: Copy License
+      ce_file_copy:
+        local_file: /home/mike/github/SR_Ansible/SR_OS_VSR-SIM_license.txt
+        remote_file: /SR_OS_VSR-SIM_license.txt
+        file_system: 'cf3:'
+        provider: "{{ cli }}"
+    
+    - name: Verify License
+      sros_command:
+        commands: file dir SR_OS_VSR-SIM_license.txt
+        wait_for: result[0] contains license
+        provider: "{{ cli }}"
+    
+    - name: Configure License and Reboot
+      sros_command:
+        commands: 
+            - bof license-file cf3:\SR_OS_VSR-SIM_license.txt
+            - bof save
+            - admin reboot
+        provider: "{{ cli }}"
+        wait_for:
+            host: {{item.address}}
+            port: 22
+            delay: 10
+    - name: Configure {{ inventory_hostname }}
+      sros_config:
+        lines:
+            - configure system name "{{ inventory_hostname }}"
+            - admin save

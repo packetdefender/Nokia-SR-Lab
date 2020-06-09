@@ -1,0 +1,4 @@
+---
+  - hosts: SRHosts
+    roles:
+      - role: SR-Lab-Setup
