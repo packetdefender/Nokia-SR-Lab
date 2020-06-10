@@ -1,0 +1,21 @@
+# TiMOS-B-19.5.R2 both/x86_64 Nokia 7750 SR Copyright (c) 2000-2019 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Wed Jun 19 14:09:59 PDT 2019 by builder in /builds/c/195B/R2/panos/main
+
+# Generated WED JUN 10 15:11:38 2020 UTC
+
+primary-image    cf3:\timos\
+primary-config   cf3:\config.cfg
+license-file     cf3:\{{item.value.path}}.txt
+address          {{ item.value.ipaddr }}/{{item.value.netmsk}} active
+static-route     0.0.0.0/1 next-hop {{ item.value.nh }}
+static-route     128.0.0.0/1 next-hop {{ item.value.nh }}
+autonegotiate
+duplex           full
+speed            100
+wait             3
+persist          off
+no li-local-save
+no li-separate
+no fips-140-2
+console-speed    115200

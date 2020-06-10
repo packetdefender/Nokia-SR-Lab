@@ -8,6 +8,12 @@
     mode: u=rw,g=r,o=r
   with_items: '{{ VM }}'
 
+- name: Copy SR License to ~/
+  copy:
+    src: ~/SR_OS_VSR-SIM_license.txt
+    dest: ~/SR_OS_VSR-SIM_license.txt
+
+
 - name: Defining Networking
   template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
   with_dict: "{{ netwk }}"
@@ -37,68 +43,91 @@
 #     xml: "{{ lookup('template', 'vm_template3.xml.j2') }}"
 #   with_dict: '{{ KVM3 }}'
 
+- name: Create Mount Folders
+  file:
+    path: /mnt/{{ item.name }}/
+    state: directory
+  with_items: '{{ VM }}'
+
+- name: Copy BoF to ~/
+  template: src=bof.cfg.j2 dest=/root/{{ item.key }}-bof.cfg
+  with_dict: '{{ lic }}'
+
+- name: Copy License and BoF to SR Disk Image
+  shell: |
+     export LIBGUESTFS_BACKEND=direct
+     guestmount -a /var/lib/libvirt/images/{{ item.name }}.qcow2 -m /dev/sda1 --rw /mnt/{{ item.name }}/
+     cat /root/SR_OS_VSR-SIM_license.txt >> /mnt/{{ item.name }}/{{ item.name }}.txt
+     cat /root/{{ item.name }}-bof.cfg >> /mnt/{{item.name}}/bof.cfg
+     umount /mnt/{{item.name}}
+  with_items: '{{ VM }}'
+
 - name: Starting SR VMs
   virt:
     name: "{{ item.name }}"
     state: running
   with_items: '{{ VM }}'
 
-- name: Set BoF Address R1 + Routes
-  telnet:
-    port: 2701
-    user: admin
-    password: admin
-    send_newline: yes
-    login_prompt: "Login: "
-    prompts:
-      - "vSIM#"
-    command:
-        - bof address 10.0.12.15/24
-        - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
-        - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
-        - bof save
+# - name: Unmount Files
+#   shell: umount /root/{{item.name}}
+#   with_items: '{{ VM }}'
 
-- name: Set BoF Address R2 + Routes
-  telnet:
-    port: 2702
-    user: admin
-    password: admin
-    send_newline: yes
-    login_prompt: "Login: "
-    prompts:
-      - "vSIM#"
-    command:
-        - bof address 10.0.12.16/24
-        - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
-        - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
-        - bof save
+# - name: Set BoF Address R1 + Routes
+#   telnet:
+#     port: 2701
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.12.15/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
+#         - bof save
 
-- name: SCP License Files to SR
-  shell: sshpass -p "admin" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ~/SR_OS_VSR-SIM_license.txt admin@{{item}}:/
-  with_items:
-    - 10.0.12.15
-    - 10.0.12.16
+# - name: Set BoF Address R2 + Routes
+#   telnet:
+#     port: 2702
+#     user: admin
+#     password: admin
+#     send_newline: yes
+#     login_prompt: "Login: "
+#     prompts:
+#       - "vSIM#"
+#     command:
+#         - bof address 10.0.12.16/24
+#         - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
+#         - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
+#         - bof save
 
-- name: Set License R1 and Reboot
-  telnet:
-    port: 2701
-    send_newline: yes
-    prompts:
-      - "vSIM#"
-    command:
-      - bof license-file cf3:\SR_OS_VSR-SIM_license.txt t
-      - bof save
+# - name: SCP License Files to SR
+#   shell: sshpass -p "admin" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ~/SR_OS_VSR-SIM_license.txt admin@{{item}}:/
+#   with_items:
+#     - 10.0.12.15
+#     - 10.0.12.16
+
+# - name: Set License R1 and Reboot
+#   telnet:
+#     port: 2701
+#     send_newline: yes
+#     prompts:
+#       - "vSIM#"
+#     command:
+#       - bof license-file cf3:\SR_OS_VSR-SIM_license.txt t
+#       - bof save
 
 
-- name: Set License R2 and Reboot
-  telnet:
-    port: 2702
-    send_newline: yes
-    prompts:
-      - "vSIM#"
-    command:
-      - bof license-file cf3:\SR_OS_VSR-SIM_license.txt 
-      - bof save
+# - name: Set License R2 and Reboot
+#   telnet:
+#     port: 2702
+#     send_newline: yes
+#     prompts:
+#       - "vSIM#"
+#     command:
+#       - bof license-file cf3:\SR_OS_VSR-SIM_license.txt 
+#       - bof save
 
 
 # - name: Set BoF Address R3 + Routes

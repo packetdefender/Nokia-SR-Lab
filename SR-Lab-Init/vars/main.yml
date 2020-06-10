@@ -150,3 +150,24 @@ netwk:
             dev_name: R7R11
       R8R12:
             dev_name: R8R12
+
+# bof:
+#       R1:
+      
+#             ipaddr: 10.0.12.15
+#             nh: 10.0.12.1
+#       R2:
+#             ipaddr: 10.0.12.16
+#             nh: 10.0.12.1
+
+lic:
+      R1:
+            path: R1
+            ipaddr: 10.0.12.15
+            netmsk: 24
+            nh: 10.0.12.1
+      R2:
+            path: R2
+            ipaddr: 10.0.12.16
+            netmsk: 24
+            nh: 10.0.12.1
