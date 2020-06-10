@@ -1,10 +1,6 @@
 ---
 # tasks file for SR-Lab-Setup
-- name: run show version and check to see if output contains sros
-  sros_command:
-    commands: show version
-    wait_for: result[0] contains sros
-    provider: "{{ cli }}"
+
   # - name: Copy License
   #   net_put:
   #     src: /home/mike/github/SR_Ansible/SR_OS_VSR-SIM_license.txt

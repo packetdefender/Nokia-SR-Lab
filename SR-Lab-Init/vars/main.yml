@@ -117,10 +117,6 @@ VM:
     # - name: R11
     # - name: R12
 
-bof1:
-      - { sport: 2701, ip: 10.0.10.15 }
-      - { sport: 2702, ip: 10.0.10.16 }
-
 netwk:
       R1R2:
             dev_name: R1R2

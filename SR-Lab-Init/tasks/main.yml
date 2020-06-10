@@ -53,9 +53,9 @@
     prompts:
       - "vSIM#"
     command:
-        - bof address 10.0.10.15/24
-        - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-        - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+        - bof address 10.0.12.15/24
+        - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
+        - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
         - bof save
 
 - name: Set BoF Address R2 + Routes
@@ -68,10 +68,38 @@
     prompts:
       - "vSIM#"
     command:
-        - bof address 10.0.10.16/24
-        - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-        - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
+        - bof address 10.0.12.16/24
+        - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
+        - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
         - bof save
+
+- name: SCP License Files to SR
+  shell: sshpass -p "admin" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ~/SR_OS_VSR-SIM_license.txt admin@{{item}}:/
+  with_items:
+    - 10.0.12.15
+    - 10.0.12.16
+
+- name: Set License R1 and Reboot
+  telnet:
+    port: 2701
+    send_newline: yes
+    prompts:
+      - "vSIM#"
+    command:
+      - bof license-file cf3:\SR_OS_VSR-SIM_license.txt t
+      - bof save
+
+
+- name: Set License R2 and Reboot
+  telnet:
+    port: 2702
+    send_newline: yes
+    prompts:
+      - "vSIM#"
+    command:
+      - bof license-file cf3:\SR_OS_VSR-SIM_license.txt 
+      - bof save
+
 
 # - name: Set BoF Address R3 + Routes
 #   telnet:
