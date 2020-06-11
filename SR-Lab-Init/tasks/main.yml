@@ -3,9 +3,9 @@
   copy:
     src: ~/sros-vm.qcow2
     dest: /var/lib/libvirt/images/{{ item.name }}.qcow2
-    owner: qemu
-    group: qemu
-    mode: u=rw,g=r,o=r
+    # owner: qemu
+    # group: qemu
+    # mode: u=rw,g=r,o=r
   with_items: '{{ VM }}'
 
 - name: Copy SR License to ~/
