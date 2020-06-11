@@ -1,287 +1,52 @@
 ---
-- name: Copy SR image from root to /var/lib/libvirt/images
-  copy:
-    src: ~/sros-vm.qcow2
-    dest: /var/lib/libvirt/images/{{ item.name }}.qcow2
-    # owner: qemu
-    # group: qemu
-    # mode: u=rw,g=r,o=r
-  with_items: '{{ VM }}'
+  - block:
+    - name: Copy SR image from root to /var/lib/libvirt/images
+      copy:
+        src: ~/sros-vm.qcow2
+        dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
+    
+    - name: Create Files Folder
+      file:
+        path: /root/files/{{ vm_name }}
+        state: directory
+    
+    - name: Copy license
+      copy:
+        src: ~/SR_OS_VSR-SIM_license.txt
+        dest: /root/files/{{ vm_name }}/license.txt
 
-- name: Copy SR License to ~/
-  copy:
-    src: ~/SR_OS_VSR-SIM_license.txt
-    dest: ~/SR_OS_VSR-SIM_license.txt
+    - name: Defining Networking
+      template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
+      run_once: true
+      with_dict: "{{ netwk }}"
+      
+    - name: Bring-Up SR-Lab Bridge Ports
+      command: ifup ifcfg-{{ item.key }}-BR
+      run_once: true
+      with_dict: "{{ netwk }}"
+      
+    - name: Copy BoF to ~/
+      template: src=bof.cfg.j2 dest=/root/files/{{ vm_name }}/bof.cfg
 
-- name: Defining Networking
-  template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
-  with_dict: "{{ netwk }}"
+    - name: Defining 5 Interface SR VM's
+      virt:
+        name: "{{ item.value.vmname }}"
+        command: define
+        xml: "{{ lookup('template', 'vm_template5.xml.j2') }}"
+      run_once: true
+      with_dict: '{{ KVM5 }}'
+    
+    - name: Copying temporary configuration files into vSIM image
+      command: guestfish --rw -a /var/lib/libvirt/images/{{ vm_name }}.qcow2 -m /dev/sda1 copy-in /root/files/{{ vm_name }}/{{ item }} /
+      with_items:
+      - bof.cfg
+      - license.txt
 
-- name: Bring-Up SR-Lab Bridge Ports
-  command: ifup ifcfg-{{ item.key }}-BR
-  with_dict: "{{ netwk }}"
-   
-- name: Defining 5 Interface SR VM's
-  virt:
-    name: "{{ item.value.vmname }}"
-    command: define
-    xml: "{{ lookup('template', 'vm_template5.xml.j2') }}"
-  with_dict: '{{ KVM5 }}'
-
-# - name: Defining 4 Interface SR VM's
-#   virt:
-#     name: "{{ item.value.vmname }}"
-#     command: define
-#     xml: "{{ lookup('template', 'vm_template4.xml.j2') }}"
-#   with_dict: '{{ KVM4 }}'
-
-# - name: Defining 3 Interface SR VM's
-#   virt:
-#     name: "{{ item.value.vmname }}"
-#     command: define
-#     xml: "{{ lookup('template', 'vm_template3.xml.j2') }}"
-#   with_dict: '{{ KVM3 }}'
-
-- name: Create Mount Folders
-  file:
-    path: /mnt/{{ item.name }}/
-    state: directory
-  with_items: '{{ VM }}'
-
-# - name: Copy BoF to ~/
-#   template: src=bof.cfg.j2 dest=/root/{{ item.key }}-bof.cfg
-#   with_dict: '{{ lic }}'
-
-- name: Copy License and BoF to SR Disk Image
-  shell: |
-     export LIBGUESTFS_BACKEND=direct 
-     guestmount -a /var/lib/libvirt/images/{{ item.name }}.qcow2 -m /dev/sda1 /mnt/{{ item.name }}
-    #  echo | mount | grep "{{ item.name }}"
-     rm -rf /mnt/{{item.name}}/bof.cfg 
-     cp /root/SR_OS_VSR-SIM_license.txt /mnt/{{ item.name }}/{{ item.name }}.txt 
-     cp /root/{{ item.name }}-bof.cfg /mnt/{{ item.name }}/bof.cfg 
-     echo "Completed! on {{item.name}}"
-     umount /mnt/{{item.name}}
-     rmdir /mnt/{{ item.name }}
-  with_items: '{{ VM }}'
-
-- name: Starting SR VMs
-  virt:
-    name: "{{ item.name }}"
-    state: running
-  with_items: '{{ VM }}'
-
-# - name: Unmount Files
-#   shell: umount /root/{{item.name}}
-#   with_items: '{{ VM }}'
-
-# - name: Set BoF Address R1 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.12.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
-#         - bof save
-
-# - name: Set BoF Address R2 + Routes
-#   telnet:
-#     port: 2702
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.12.16/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.12.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.12.1
-#         - bof save
-
-# - name: SCP License Files to SR
-#   shell: sshpass -p "admin" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ~/SR_OS_VSR-SIM_license.txt admin@{{item}}:/
-#   with_items:
-#     - 10.0.12.15
-#     - 10.0.12.16
-
-# - name: Set License R1 and Reboot
-#   telnet:
-#     port: 2701
-#     send_newline: yes
-#     prompts:
-#       - "vSIM#"
-#     command:
-#       - bof license-file cf3:\SR_OS_VSR-SIM_license.txt t
-#       - bof save
-
-
-# - name: Set License R2 and Reboot
-#   telnet:
-#     port: 2702
-#     send_newline: yes
-#     prompts:
-#       - "vSIM#"
-#     command:
-#       - bof license-file cf3:\SR_OS_VSR-SIM_license.txt 
-#       - bof save
-
-
-# - name: Set BoF Address R3 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-
-# - name: Set BoF Address R4 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-# - name: Set BoF Address R5 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-# - name: Set BoF Address R6 + Routes
-#   telnet:
-#     port: 2702
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.16/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-# - name: Set BoF Address R7 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-
-# - name: Set BoF Address R8 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-# - name: Set BoF Address R9 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-# - name: Set BoF Address R10 + Routes
-#   telnet:
-#     port: 2702
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.16/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-# - name: Set BoF Address R11 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
-
-
-# - name: Set BoF Address R12 + Routes
-#   telnet:
-#     port: 2701
-#     user: admin
-#     password: admin
-#     send_newline: yes
-#     login_prompt: "Login: "
-#     prompts:
-#       - "vSIM#"
-#     command:
-#         - bof address 10.0.10.15/24
-#         - bof static-route 0.0.0.0/1 next-hop 10.0.10.1
-#         - bof static-route 128.0.0.0/1 next-hop 10.0.10.1
-#         - bof save
+    - name: Starting SR VMs
+      virt:
+        name: "{{ vm_name }}"
+        state: running
+  
+    delegate_to: "{{ target_server }}"
+    remote_user: "{{ target_server_username }}"
+  

@@ -12,16 +12,16 @@ KVM5:
           serial_port: 2701
 
           
-#     R02_VM:
-#           vmname: R2
-#           qcow_image: R2
-#           desc: R2_XML_FILE
-#           br1: MGMT-BR
-#           br2: R2R6-BR
-#           br3: R1R2-BR
-#           br4: R2R4-BR
-#           br5: R2R3-BR
-#           serial_port: 2702
+    R02_VM:
+          vmname: R2
+          qcow_image: R2
+          desc: R2_XML_FILE
+          br1: MGMT-BR
+          br2: R2R6-BR
+          br3: R1R2-BR
+          br4: R2R4-BR
+          br5: R2R3-BR
+          serial_port: 2702
 
 #     R03_VM:
 #           vmname: R3
@@ -105,7 +105,7 @@ KVM5:
 #           br3: R8R12-BR
 VM:
     - name: R1
-#     - name: R2
+    # - name: R2
     # - name: R3
     # - name: R4
     # - name: R5
@@ -150,24 +150,3 @@ netwk:
             dev_name: R7R11
       R8R12:
             dev_name: R8R12
-
-# bof:
-#       R1:
-      
-#             ipaddr: 10.0.12.15
-#             nh: 10.0.12.1
-#       R2:
-#             ipaddr: 10.0.12.16
-#             nh: 10.0.12.1
-
-lic:
-      R1:
-            path: R1
-            ipaddr: 10.0.12.15
-            netmsk: 24
-            nh: 10.0.12.1
-      # R2:
-      #       path: R2
-      #       ipaddr: 10.0.12.16
-      #       netmsk: 24
-      #       nh: 10.0.12.1
