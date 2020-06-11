@@ -13,7 +13,6 @@
     src: ~/SR_OS_VSR-SIM_license.txt
     dest: ~/SR_OS_VSR-SIM_license.txt
 
-
 - name: Defining Networking
   template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
   with_dict: "{{ netwk }}"
@@ -49,17 +48,21 @@
     state: directory
   with_items: '{{ VM }}'
 
-- name: Copy BoF to ~/
-  template: src=bof.cfg.j2 dest=/root/{{ item.key }}-bof.cfg
-  with_dict: '{{ lic }}'
+# - name: Copy BoF to ~/
+#   template: src=bof.cfg.j2 dest=/root/{{ item.key }}-bof.cfg
+#   with_dict: '{{ lic }}'
 
 - name: Copy License and BoF to SR Disk Image
   shell: |
-     export LIBGUESTFS_BACKEND=direct
-     guestmount -a /var/lib/libvirt/images/{{ item.name }}.qcow2 -m /dev/sda1 --rw /mnt/{{ item.name }}/
-     cat /root/SR_OS_VSR-SIM_license.txt >> /mnt/{{ item.name }}/{{ item.name }}.txt
-     cat /root/{{ item.name }}-bof.cfg >> /mnt/{{item.name}}/bof.cfg
+     export LIBGUESTFS_BACKEND=direct 
+     guestmount -a /var/lib/libvirt/images/{{ item.name }}.qcow2 -m /dev/sda1 /mnt/{{ item.name }}
+    #  echo | mount | grep "{{ item.name }}"
+     rm -rf /mnt/{{item.name}}/bof.cfg 
+     cp /root/SR_OS_VSR-SIM_license.txt /mnt/{{ item.name }}/{{ item.name }}.txt 
+     cp /root/{{ item.name }}-bof.cfg /mnt/{{ item.name }}/bof.cfg 
+     echo "Completed! on {{item.name}}"
      umount /mnt/{{item.name}}
+     rmdir /mnt/{{ item.name }}
   with_items: '{{ VM }}'
 
 - name: Starting SR VMs

@@ -2,7 +2,7 @@
 # vars file for SR-Lab-Destroy
 VM:
     - name: R1
-    - name: R2
+    # - name: R2
     # - name: R3
     # - name: R4
     # - name: R5
