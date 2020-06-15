@@ -1,8 +1,20 @@
 ---
 # tasks file for SR-Lab-Setup
-
-  - name: Configure {{ vm_name }}
-    sros_config:
-      lines:
-          - configure system name "{{ vm_name }}"
-          - admin save
+  - name: Obtain the currently configured hostname over NETCONF
+    connection: netconf
+    netconf_get:
+      source: running
+      filter: <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf"><system><name/></system></configure>
+    register: running_config
+  
+  - name: Extract the name variable from the XML response
+    xml:
+      xpath: /rpc-reply/data/configure/system/name
+      xmlstring: "{{ running_config.stdout }}"
+      content: text
+    delegate_to: localhost
+    register: configured_router_name
+  
+  - name: Output the hostname currently configured in the running configuration datastore
+    debug:
+      msg: "The currently configured hostname in the running configuration datastore is {{ configured_router_name.matches[0].name }}"

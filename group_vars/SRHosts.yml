@@ -1,7 +1,7 @@
 ansible_host_key_checking: False
 ansible_ssh_user: admin
 ansible_ssh_pass: admin
-ansible_ssh_common_args:  '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -oKexAlgorithms=+diffie-hellman-group1-sha1'
+ansible_ssh_common_args:  '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no - KexAlgorithms=+diffie-hellman-group1-sha1'
 ansible_host_key_auto_add: yes
 
 license_dir: /root/files/{{vsr_name}}
@@ -13,4 +13,3 @@ mgmt_gw: '{{vsr_mgmt_gw}}'
 mgmt_static_rt_list:
     - 0.0.0.0/1
     - 128.0.0.0/1
-

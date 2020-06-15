@@ -2,7 +2,7 @@
   - block:
     - name: Copy SR image from root to /var/lib/libvirt/images
       copy:
-        src: ~/sros-vm.qcow2
+        src: sros-vm.qcow2
         dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
     
     - name: Create Files Folder
@@ -12,7 +12,7 @@
     
     - name: Copy license
       copy:
-        src: ~/SR_OS_VSR-SIM_license.txt
+        src: SR_OS_VSR-SIM_license.txt
         dest: /root/files/{{ vm_name }}/license.txt
 
     - name: Defining Networking
