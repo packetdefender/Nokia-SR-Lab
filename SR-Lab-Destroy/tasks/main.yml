@@ -23,7 +23,13 @@
   file: path=/var/lib/libvirt/images/{{ item.name }}.qcow2 state=absent
   with_items: "{{ VM }}" 
 
-# - name: Reboot Server
-#   reboot:
-#     reboot_timeout: 300
+- name: Remove Created files directories
+  file: 
+    path: /root/files/{{ item.name }}
+    state: absent
+  with_items: "{{ VM }}"
+
+- name: Reboot Server
+  reboot:
+    reboot_timeout: 300
 
