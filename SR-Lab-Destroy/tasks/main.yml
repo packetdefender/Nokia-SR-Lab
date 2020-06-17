@@ -29,7 +29,7 @@
     state: absent
   with_items: "{{ VM }}"
 
-- name: Reboot Server
-  reboot:
-    reboot_timeout: 300
+# - name: Reboot Server
+#   reboot:
+#     reboot_timeout: 300
 
