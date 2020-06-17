@@ -148,3 +148,127 @@ netwk:
             dev_name: R7R11
       R8R12:
             dev_name: R8R12
+SR4:
+      R1:
+            routername: P1
+            Intf1: P1-to-P2
+            Address1: 1.1.2.1/30
+            Port1: 1/1/c2/1 
+            Intf2: P1-to-P3
+            Address2: 1.1.3.1/30
+            Port2: 1/1/c3/1 
+            Intf3: P1-to-P4
+            Address3: 1.1.4.1/30
+            Port3: 1/1/c4/1 
+            Intf4: P1-to-PE1
+            Address4: 1.1.5.1/30
+            Port4: 1/1/c1/1
+      R2:
+            routername: P2
+            Intf1: P2-to-P1
+            Address1: 1.1.2.2/30
+            Port1: 1/1/c2/1 
+            Intf2: P2-to-P3
+            Address2: 1.2.3.1/30
+            Port2: 1/1/c4/1 
+            Intf3: P2-to-P4
+            Address3: 1.2.4.1/30
+            Port3: 1/1/c3/1 
+            Intf4: P2-to-PE2
+            Address4: 1.2.6.1/30
+            Port4: 1/1/c1/1
+#       R3:
+#             routername: P3
+#             Intf1: P3-to-P1
+#             Address1: 1.1.3.2/30
+#             Port1: 1/1/c3/1 
+#             Intf2: P3-to-P2
+#             Address2: 1.2.3.2/30
+#             Port2: 1/1/c4/1 
+#             Intf3: P3-to-P4
+#             Address3: 1.3.4.1/30
+#             Port3: 1/1/c2/1 
+#             Intf4: P3-to-PE3
+#             Address4: 1.3.7.1/30
+#             Port4: 1/1/c1/1
+#       R4:
+#             routername: P4
+#             Intf1: P4-to-P1
+#             Address1: 1.1.4.2/30
+#             Port1: 1/1/c4/1 
+#             Intf2: P4-to-P2
+#             Address2: 1.2.4.2/30
+#             Port2: 1/1/c3/1 
+#             Intf3: P4-to-P3
+#             Address3: 1.3.4.2/30
+#             Port3: 1/1/c2/1 
+#             Intf4: P4-to-PE4
+#             Address4: 1.4.8.1/30
+#             Port4: 1/1/c1/1
+# SR3:
+#       PE1:
+#             routername: PE1
+#             Intf1: PE1-to-P1
+#             Address1: 1.1.5.2/30
+#             Port1: 1/1/c1/1 
+#             Intf2: PE1-to-PE2
+#             Address2: 1.5.6.1/30
+#             Port2: 1/1/c3/1 
+#             Intf3: PE1-to-CE1
+#             Address3: 1.5.9.1/30
+#             Port3: 1/1/c1/1 
+#       PE2:
+#             routername: PE2
+#             Intf1: PE2-to-P2
+#             Address1: 1.2.6.2/30
+#             Port1: 1/1/c1/1 
+#             Intf2: PE2-to-PE1
+#             Address2: 1.5.6.2/30
+#             Port2: 1/1/c3/1 
+#             Intf3: PE2-to-CE2
+#             Address3: 1.6.10.1/30
+#             Port3: 1/1/c2/1 
+#       PE3:
+#             routername: PE3
+#             Intf1: PE3-to-P3
+#             Address1: 1.3.7.2/30
+#             Port1: 1/1/c1/1 
+#             Intf2: PE3-to-PE4
+#             Address2: 1.7.8.1/30
+#             Port2: 1/1/c3/1 
+#             Intf3: PE3-to-CE3
+#             Address3: 1.7.11.1/30
+#             Port3: 1/1/c2/1 
+#       PE4:
+#             routername: PE4
+#             Intf1: PE4-to-P4
+#             Address1: 1.4.8.2/30
+#             Port1: 1/1/c1/1 
+#             Intf2: PE4-to-PE3
+#             Address2: 1.7.8.2/30
+#             Port2: 1/1/c3/1 
+#             Intf3: PE4-to-CE4
+#             Address3: 1.8.12.1/30
+#             Port3: 1/1/c2/1 
+# SR1:
+#       CE1:
+#             routername: CE1
+#             Intf1: CE1-to-PE1
+#             Address1: 1.5.9.2/30
+#             Port1: 1/1/c2/1 
+#       CE2:
+#             routername: CE2
+#             Intf1: CE2-to-PE2
+#             Address1: 1.6.10.2/30
+#             Port1: 1/1/c2/1 
+#       CE3:
+#             routername: CE3
+#             Intf1: CE3-to-PE3
+#             Address1: 1.7.11.2/30
+#             Port1: 1/1/c2/1   
+#       CE4:
+#             routername: CE4
+#             Intf1: CE4-to-P4
+#             Address1: 1.8.12.2/30
+#             Port1: 1/1/c2/1  
+        

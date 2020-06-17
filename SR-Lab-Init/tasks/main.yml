@@ -28,6 +28,21 @@
     - name: Copy BoF to ~/
       template: src=bof.cfg.j2 dest=/root/files/{{ vm_name }}/bof.cfg
 
+    - name: Define 4 Interface SR
+      template: src=config4.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
+      run_once: True
+      with_dict: '{{ SR4 }}'
+    
+    # - name: Define 3 Interface SR
+    #   template: src=config3.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
+    #   run_once: True
+    #   with_dict: '{{ SR3 }}'
+    
+    # - name: Define 1 Interface SR
+    #   template: src=config1.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
+    #   run_once: True
+    #   with_dict: '{{ SR1 }}'
+
     - name: Defining 5 Interface SR VM's
       virt:
         name: "{{ item.value.vmname }}"
@@ -41,6 +56,7 @@
       with_items:
       - bof.cfg
       - license.txt
+      - config.cfg
 
     - name: Starting SR VMs
       virt:
