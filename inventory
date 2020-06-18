@@ -4,13 +4,13 @@
 [SRHosts]
 R1 vm_name=R1 vsr_mgmt=10.0.12.15 vsr_mgmt_gw=10.0.12.1 ansible_ssh_user=admin ansible_ssh_pass=admin
 R2 vm_name=R2 vsr_mgmt=10.0.12.16 vsr_mgmt_gw=10.0.12.1 ansible_ssh_user=admin ansible_ssh_pass=admin
-#R3 vm_name=R3 vsr_mgmt=10.0.12.17 vsr_mgmt_gw=10.0.12.1
-#R4 vm_name=R4 vsr_mgmt=10.0.12.18 vsr_mgmt_gw=10.0.12.1
-#R5 vm_name=R5 vsr_mgmt=10.0.12.19 vsr_mgmt_gw=10.0.12.1
-#R6 vm_name=R6 vsr_mgmt=10.0.12.20 vsr_mgmt_gw=10.0.12.1
-#R7 vm_name=R7 vsr_mgmt=10.0.12.21 vsr_mgmt_gw=10.0.12.1
-#R8 vm_name=R8 vsr_mgmt=10.0.12.22 vsr_mgmt_gw=10.0.12.1
-#R9 vm_name=R9 vsr_mgmt=10.0.12.23 vsr_mgmt_gw=10.0.12.1
-#R10 vm_name=R10 vsr_mgmt=10.0.12.24 vsr_mgmt_gw=10.0.12.1
-#R11 vm_name=R11 vsr_mgmt=10.0.12.25 vsr_mgmt_gw=10.0.12.1
-#R12 vm_name=R12 vsr_mgmt=10.0.12.26 vsr_mgmt_gw=10.0.12.1
+R3 vm_name=R3 vsr_mgmt=10.0.12.17 vsr_mgmt_gw=10.0.12.1
+R4 vm_name=R4 vsr_mgmt=10.0.12.18 vsr_mgmt_gw=10.0.12.1
+R5 vm_name=R5 vsr_mgmt=10.0.12.19 vsr_mgmt_gw=10.0.12.1
+R6 vm_name=R6 vsr_mgmt=10.0.12.20 vsr_mgmt_gw=10.0.12.1
+R7 vm_name=R7 vsr_mgmt=10.0.12.21 vsr_mgmt_gw=10.0.12.1
+R8 vm_name=R8 vsr_mgmt=10.0.12.22 vsr_mgmt_gw=10.0.12.1
+R9 vm_name=R9 vsr_mgmt=10.0.12.23 vsr_mgmt_gw=10.0.12.1
+R10 vm_name=R10 vsr_mgmt=10.0.12.24 vsr_mgmt_gw=10.0.12.1
+R11 vm_name=R11 vsr_mgmt=10.0.12.25 vsr_mgmt_gw=10.0.12.1
+R12 vm_name=R12 vsr_mgmt=10.0.12.26 vsr_mgmt_gw=10.0.12.1

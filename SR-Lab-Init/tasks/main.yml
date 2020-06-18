@@ -29,19 +29,19 @@
       template: src=bof.cfg.j2 dest=/root/files/{{ vm_name }}/bof.cfg
 
     - name: Create 4 Interface SR Config
-      template: src=config4.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
+      template: src=config.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
       run_once: True
-      with_dict: '{{ SR4 }}'
+      with_dict: '{{ routers }}'
     
-    - name: Create 3 Interface SR Config
-      template: src=config3.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
-      run_once: True
-      with_dict: '{{ SR3 }}'
+    # - name: Create 3 Interface SR Config -- OLD
+    #   template: src=config3.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
+    #   run_once: True
+    #   with_dict: '{{ SR3 }}'
     
-    - name: Create 1 Interface SR Config
-      template: src=config1.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
-      run_once: True
-      with_dict: '{{ SR1 }}'
+    # - name: Create 1 Interface SR Config  -- OLD
+    #   template: src=config1.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
+    #   run_once: True
+    #   with_dict: '{{ SR1 }}'
 
     - name: Defining 5 Interface SR VM's
       virt:
