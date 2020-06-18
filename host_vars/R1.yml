@@ -8,11 +8,12 @@ numbr: 5
 vmname: R1
 qcow_image: R1
 desc: R1_XML_FILE
-br1: MGMT-BR
-br2: R1R5-BR
-br3: R1R2-BR
-br4: R1R3-BR
-br5: R1R4-BR
+bridges: 
+    - MGMT-BR
+    - R1R5-BR
+    - R1R2-BR
+    - R1R3-BR
+    - R1R4-BR
 
 #[base_config_file]
 ifcount: 4

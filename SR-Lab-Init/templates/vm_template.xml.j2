@@ -28,26 +28,28 @@
 			<source file="/var/lib/libvirt/images/{{ qcow_image }}.qcow2"/>
 			<target dev="hda" bus="virtio"/>
 		</disk>
+{% if numbr == 5 %}
+	{% for br in bridges %}
 		                <interface type="bridge">
-                        <source bridge="{{ br1 }}"/>
+                        <source bridge="{{ br }}"/>
                         <model type="virtio"/>
                 </interface>
-		<interface type="bridge">
-			<source bridge="{{ br2 }}"/>
-			<model type="virtio"/>
-		</interface>
-                <interface type="bridge">
-                        <source bridge="{{ br3 }}"/>
+	{% endfor %}
+{% elif numbr == 4 %}
+	{% for br in bridges %}
+		                <interface type="bridge">
+                        <source bridge="{{ br }}"/>
                         <model type="virtio"/>
                 </interface>
-		<interface type="bridge">
-			<source bridge="{{ br4 }}"/>
-			<model type="virtio"/>
-		</interface>
-                <interface type="bridge">
-                        <source bridge="{{ br5 }}"/>
+	{% endfor %}
+{% elif numbr == 3 %}
+	{% for br in bridges %}
+		                <interface type="bridge">
+                        <source bridge="{{ br }}"/>
                         <model type="virtio"/>
                 </interface>
+	{% endfor %}
+{% endif %}
 		<console type='pty' tty='/dev/pts/1'>
       <source path='/dev/pts/1'/>
       <target type='serial' port='0'/>

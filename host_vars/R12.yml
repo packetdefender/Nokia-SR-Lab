@@ -8,9 +8,10 @@ numbr: 3
 vmname: R12
 qcow_image: R12
 desc: R12_XML_FILE
-br1: MGMT-BR
-br2: MGMT-BR
-br3: R8R12-BR
+bridges: 
+    - MGMT-BR
+    - MGMT-BR
+    - R8R12-BR
 
 #[base_config_file]
 ifcount: 1
