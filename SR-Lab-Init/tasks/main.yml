@@ -28,7 +28,7 @@
     - name: Copy BoF to ~/
       template: src=bof.cfg.j2 dest=/root/files/{{ vm_name }}/bof.cfg
 
-    - name: Create 4 Interface SR Config
+    - name: Create SR Config Files
       template: src=config.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
       run_once: True
       with_dict: '{{ routers }}'
