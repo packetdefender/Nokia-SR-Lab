@@ -8,10 +8,11 @@ numbr: 4
 vmname: R7
 qcow_image: R7
 desc: R7_XML_FILE
-br1: MGMT-BR
-br2: R3R7-BR
-br3: R7R11-BR
-br4: R7R8-BR
+bridges: 
+    - MGMT-BR
+    - R3R7-BR
+    - R7R11-BR
+    - R7R8-BR
 
 #[base_config_file]
 ifcount: 3
