@@ -1,0 +1,27 @@
+#[bof_config]
+vm_name: R6
+vsr_mgmt: 10.0.12.20
+vsr_mgmt_gw: 10.0.12.1
+
+#[base_config_kvm]
+numbr: 4 
+vmname: R6
+qcow_image: R6
+desc: R6_XML_FILE
+br1: MGMT-BR
+br2: R2R6-BR
+br3: R6R10-BR
+br4: R5R6-BR
+
+#[base_config_file]
+ifcount: 3
+routername: PE2
+Intf1: PE2-to-P2
+Address1: 1.2.6.2/30
+Port1: 1/1/c1/1 
+Intf2: PE2-to-PE1
+Address2: 1.5.6.2/30
+Port2: 1/1/c3/1 
+Intf3: PE2-to-CE2
+Address3: 1.6.10.1/30
+Port3: 1/1/c2/1 

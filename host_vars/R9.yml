@@ -1,0 +1,20 @@
+#[bof_config]
+vm_name: R9
+vsr_mgmt: 10.0.12.23
+vsr_mgmt_gw: 10.0.12.1
+
+#[base_config_kvm]
+numbr: 3
+vmname: R9
+qcow_image: R9
+desc: R9_XML_FILE
+br1: MGMT-BR
+br2: MGMT-BR
+br3: R5R9-BR
+
+#[base_config_file]
+ifcount: 1
+routername: CE1
+Intf1: CE1-to-PE1
+Address1: 1.5.9.2/30
+Port1: 1/1/c2/1 

@@ -1,0 +1,20 @@
+#[bof_config]
+vm_name: R10
+vsr_mgmt: 10.0.12.24
+vsr_mgmt_gw: 10.0.12.1
+
+#[base_config_kvm]
+numbr: 3
+vmname: R10
+qcow_image: R10
+desc: R10_XML_FILE
+br1: MGMT-BR
+br2: MGMT-BR
+br3: R6R10-BR
+
+#[base_config_file]
+ifcount: 1
+routername: CE2
+Intf1: CE2-to-PE2
+Address1: 1.6.10.2/30
+Port1: 1/1/c2/1 

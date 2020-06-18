@@ -1,0 +1,20 @@
+#[bof_config]
+vm_name: R12
+vsr_mgmt: 10.0.12.26
+vsr_mgmt_gw: 10.0.12.1
+
+#[base_config_kvm]
+numbr: 3
+vmname: R12
+qcow_image: R12
+desc: R12_XML_FILE
+br1: MGMT-BR
+br2: MGMT-BR
+br3: R8R12-BR
+
+#[base_config_file]
+ifcount: 1
+routername: CE4
+Intf1: CE4-to-PE4
+Address1: 1.8.12.2/30
+Port1: 1/1/c2/1  

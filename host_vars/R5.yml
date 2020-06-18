@@ -1,0 +1,27 @@
+#[bof_config]
+vm_name: R5
+vsr_mgmt: 10.0.12.19
+vsr_mgmt_gw: 10.0.12.1
+
+#[base_config_kvm]
+numbr: 4
+vmname: R5
+qcow_image: R5
+desc: R5_XML_FILE
+br1: MGMT-BR
+br2: R1R5-BR
+br3: R5R9-BR
+br4: R5R6-BR
+
+#[base_config_file]
+ifcount: 3
+routername: PE1
+Intf1: PE1-to-P1
+Address1: 1.1.5.2/30
+Port1: 1/1/c1/1 
+Intf2: PE1-to-PE2
+Address2: 1.5.6.1/30
+Port2: 1/1/c3/1 
+Intf3: PE1-to-CE1
+Address3: 1.5.9.1/30
+Port3: 1/1/c1/1 

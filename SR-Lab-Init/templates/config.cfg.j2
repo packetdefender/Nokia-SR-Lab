@@ -4,7 +4,7 @@ configure
 echo "System Configuration"
 #--------------------------------------------------
     system
-        name {{ item.value.routername }}
+        name {{ routername }}
         time
             sntp
                 shutdown
@@ -139,47 +139,47 @@ echo "Management Router Configuration"
 echo "Router (Network Side) Configuration"
 #--------------------------------------------------
     router Base
-{% if item.value.ifcount == 4 %}
-        interface "{{ item.value.Intf1}}"
-            address {{ item.value.Address1 }}
-            port {{ item.value.Port1 }}
+{% if ifcount == 4 %}
+        interface "{{ Intf1}}"
+            address {{ Address1 }}
+            port {{ Port1 }}
             no shutdown
         exit
-        interface "{{ item.value.Intf2 }}"
-            address {{ item.value.Address2 }}
-            port {{ item.value.Port2 }}
+        interface "{{ Intf2 }}"
+            address {{ Address2 }}
+            port {{ Port2 }}
             no shutdown
         exit
-        interface "{{ item.value.Intf3 }}"
-            address {{ item.value.Address3 }}
-            port {{ item.value.Port3 }}
+        interface "{{ Intf3 }}"
+            address {{ Address3 }}
+            port {{ Port3 }}
             no shutdown
         exit
-        interface "{{ item.value.Intf4 }}"
-            address {{ item.value.Address4 }}
-            port {{ item.value.Port4 }}
+        interface "{{ Intf4 }}"
+            address {{ Address4 }}
+            port {{ Port4 }}
             no shutdown
         exit
-{% elif item.value.ifcount == 3 %}
-        interface "{{ item.value.Intf1}}"
-            address {{ item.value.Address1 }}
-            port {{ item.value.Port1 }}
+{% elif ifcount == 3 %}
+        interface "{{ Intf1}}"
+            address {{ Address1 }}
+            port {{ Port1 }}
             no shutdown
         exit
-        interface "{{ item.value.Intf2 }}"
-            address {{ item.value.Address2 }}
-            port {{ item.value.Port2 }}
+        interface "{{ Intf2 }}"
+            address {{ Address2 }}
+            port {{ Port2 }}
             no shutdown
         exit
-        interface "{{ item.value.Intf3 }}"
-            address {{ item.value.Address3 }}
-            port {{ item.value.Port3 }}
+        interface "{{ Intf3 }}"
+            address {{ Address3 }}
+            port {{ Port3 }}
             no shutdown
         exit
-{% elif item.value.ifcount == 1 %}
-        interface "{{ item.value.Intf1}}"
-            address {{ item.value.Address1 }}
-            port {{ item.value.Port1 }}
+{% elif ifcount == 1 %}
+        interface "{{ Intf1 }}"
+            address {{ Address1 }}
+            port {{ Port1 }}
             no shutdown
         exit
 {% endif %}

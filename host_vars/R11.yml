@@ -1,0 +1,21 @@
+#[bof_config]
+vm_name: R11
+vsr_mgmt: 10.0.12.25
+vsr_mgmt_gw: 10.0.12.1
+
+#[base_config_kvm]
+numbr: 3
+vmname: R11
+qcow_image: R11
+desc: R11_XML_FILE
+br1: MGMT-BR
+br2: MGMT-BR
+br3: R7R11-BR
+
+
+#[base_config_file]
+ifcount: 1
+routername: CE3
+Intf1: CE3-to-PE3
+Address1: 1.7.11.2/30
+Port1: 1/1/c2/1   
