@@ -1,6 +1,7 @@
 ---
 KVM5:
     R01_VM:
+          numbr: 5
           vmname: R1
           qcow_image: R1
           desc: R1_XML_FILE
@@ -11,6 +12,7 @@ KVM5:
           br5: R1R4-BR
           
     R02_VM:
+          numbr: 5
           vmname: R2
           qcow_image: R2
           desc: R2_XML_FILE
@@ -21,6 +23,7 @@ KVM5:
           br5: R2R3-BR
 
     R03_VM:
+          numbr: 5
           vmname: R3
           qcow_image: R3
           desc: R3_XML_FILE
@@ -30,6 +33,7 @@ KVM5:
           br4: R1R3-BR
           br5: R2R3-BR
     R04-VM:
+          numbr: 5
           vmname: R4
           qcow_image: R4
           desc: R4_XML_FILE
@@ -40,6 +44,7 @@ KVM5:
           br5: R1R4-BR 
 KVM4:          
     R05-VM:
+          numbr: 4
           vmname: R5
           qcow_image: R5
           desc: R5_XML_FILE
@@ -48,6 +53,7 @@ KVM4:
           br3: R5R9-BR
           br4: R5R6-BR
     R06-VM:
+          numbr: 4 
           vmname: R6
           qcow_image: R6
           desc: R6_XML_FILE
@@ -56,6 +62,7 @@ KVM4:
           br3: R6R10-BR
           br4: R5R6-BR
     R07-VM:
+          numbr: 4
           vmname: R7
           qcow_image: R7
           desc: R7_XML_FILE
@@ -64,6 +71,7 @@ KVM4:
           br3: R7R11-BR
           br4: R7R8-BR
     R08-VM:
+          numbr: 4
           vmname: R8
           qcow_image: R8
           desc: R8_XML_FILE
@@ -73,6 +81,7 @@ KVM4:
           br4: R7R8-BR
 KVM3:
     R09-VM:
+          numbr: 3
           vmname: R9
           qcow_image: R9
           desc: R9_XML_FILE
@@ -80,6 +89,7 @@ KVM3:
           br2: MGMT-BR
           br3: R5R9-BR
     R10-VM:
+          numbr: 3
           vmname: R10
           qcow_image: R10
           desc: R10_XML_FILE
@@ -87,6 +97,7 @@ KVM3:
           br2: MGMT-BR
           br3: R6R10-BR
     R11-VM:
+          numbr: 3
           vmname: R11
           qcow_image: R11
           desc: R11_XML_FILE
@@ -94,6 +105,7 @@ KVM3:
           br2: MGMT-BR
           br3: R7R11-BR
     R12-VM:
+          numbr: 3
           vmname: R12
           qcow_image: R12
           desc: R12_XML_FILE
