@@ -92,63 +92,6 @@ echo "Connector Configuration"
         exit
         no shutdown
     exit
-    port 1/1/c6
-        shutdown
-    exit
-    port 1/1/c7
-        shutdown
-    exit
-    port 1/1/c8
-        shutdown
-    exit
-    port 1/1/c9
-        shutdown
-    exit
-    port 1/1/c10
-        shutdown
-    exit
-    port 1/1/c11
-        shutdown
-    exit
-    port 1/1/c12
-        shutdown
-    exit
-    port 1/2/c1
-        shutdown
-    exit
-    port 1/2/c2
-        shutdown
-    exit
-    port 1/2/c3
-        shutdown
-    exit
-    port 1/2/c4
-        shutdown
-    exit
-    port 1/2/c5
-        shutdown
-    exit
-    port 1/2/c6
-        shutdown
-    exit
-    port 1/2/c7
-        shutdown
-    exit
-    port 1/2/c8
-        shutdown
-    exit
-    port 1/2/c9
-        shutdown
-    exit
-    port 1/2/c10
-        shutdown
-    exit
-    port 1/2/c11
-        shutdown
-    exit
-    port 1/2/c12
-        shutdown
-    exit
 #--------------------------------------------------
 echo "Port Configuration"
 #--------------------------------------------------
@@ -157,100 +100,25 @@ echo "Port Configuration"
         exit
         no shutdown
     exit
-    port 1/1/c1/2
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c1/3
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c1/4
-        shutdown
-        ethernet
-        exit
-    exit
     port 1/1/c2/1
         ethernet
         exit
         no shutdown
-    exit
-    port 1/1/c2/2
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c2/3
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c2/4
-        shutdown
-        ethernet
-        exit
     exit
     port 1/1/c3/1
         ethernet
         exit
         no shutdown
     exit
-    port 1/1/c3/2
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c3/3
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c3/4
-        shutdown
-        ethernet
-        exit
-    exit
     port 1/1/c4/1
         ethernet
         exit
         no shutdown
     exit
-    port 1/1/c4/2
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c4/3
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c4/4
-        shutdown
-        ethernet
-        exit
-    exit
     port 1/1/c5/1
         ethernet
         exit
         no shutdown
-    exit
-    port 1/1/c5/2
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c5/3
-        shutdown
-        ethernet
-        exit
-    exit
-    port 1/1/c5/4
-        shutdown
-        ethernet
-        exit
     exit
 #--------------------------------------------------
 echo "System Sync-If-Timing Configuration"
@@ -271,6 +139,7 @@ echo "Management Router Configuration"
 echo "Router (Network Side) Configuration"
 #--------------------------------------------------
     router Base
+{% if item.value.ifcount == 4 %}
         interface "{{ item.value.Intf1}}"
             address {{ item.value.Address1 }}
             port {{ item.value.Port1 }}
@@ -286,6 +155,34 @@ echo "Router (Network Side) Configuration"
             port {{ item.value.Port3 }}
             no shutdown
         exit
+        interface "{{ item.value.Intf4 }}"
+            address {{ item.value.Address4 }}
+            port {{ item.value.Port4 }}
+            no shutdown
+        exit
+{% elif item.value.ifcount == 3 %}
+        interface "{{ item.value.Intf1}}"
+            address {{ item.value.Address1 }}
+            port {{ item.value.Port1 }}
+            no shutdown
+        exit
+        interface "{{ item.value.Intf2 }}"
+            address {{ item.value.Address2 }}
+            port {{ item.value.Port2 }}
+            no shutdown
+        exit
+        interface "{{ item.value.Intf3 }}"
+            address {{ item.value.Address3 }}
+            port {{ item.value.Port3 }}
+            no shutdown
+        exit
+{% elif item.value.ifcount == 1 %}
+        interface "{{ item.value.Intf1}}"
+            address {{ item.value.Address1 }}
+            port {{ item.value.Port1 }}
+            no shutdown
+        exit
+{% endif %}
         interface "system"
             no shutdown
         exit
@@ -296,11 +193,6 @@ echo "Service Configuration"
     service
         customer 1 name "1" create
             description "Default customer"
-        exit
-        vsd
-            domain "Test" type vrf-vxlan create
-                shutdown
-            exit
         exit
     exit
 #--------------------------------------------------
