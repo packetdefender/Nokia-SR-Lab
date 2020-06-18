@@ -1,36 +1,36 @@
 ---
   - block:
-    # - name: Copy SR image from root to /var/lib/libvirt/images
-    #   copy:
-    #     src: sros-vm.qcow2
-    #     dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
+    - name: Copy SR image from root to /var/lib/libvirt/images
+      copy:
+        src: sros-vm.qcow2
+        dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
     
-    # - name: Create Files Folder
-    #   file:
-    #     path: /root/files/{{ vm_name }}
-    #     state: directory
+    - name: Create Files Folder
+      file:
+        path: /root/files/{{ vm_name }}
+        state: directory
     
-    # - name: Copy license
-    #   copy:
-    #     src: SR_OS_VSR-SIM_license.txt
-    #     dest: /root/files/{{ vm_name }}/license.txt
+    - name: Copy license
+      copy:
+        src: SR_OS_VSR-SIM_license.txt
+        dest: /root/files/{{ vm_name }}/license.txt
 
-    # - name: Defining Networking
-    #   template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
-    #   run_once: true
-    #   with_dict: "{{ netwk }}"
+    - name: Defining Networking
+      template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
+      run_once: true
+      with_dict: "{{ netwk }}"
       
-    # - name: Bring-Up SR-Lab Bridge Ports
-    #   command: ifup ifcfg-{{ item.key }}-BR
-    #   run_once: true
-    #   with_dict: "{{ netwk }}"
+    - name: Bring-Up SR-Lab Bridge Ports
+      command: ifup ifcfg-{{ item.key }}-BR
+      run_once: true
+      with_dict: "{{ netwk }}"
       
-    # - name: Copy BoF to ~/
-    #   template: src=bof.cfg.j2 dest=/root/files/{{ vm_name }}/bof.cfg
+    - name: Copy BoF to ~/
+      template: src=bof.cfg.j2 dest=/root/files/{{ vm_name }}/bof.cfg
 
-    # - name: Create SR Config Files
-    #   template: src=config.cfg.j2 dest=/root/files/{{ vm_name }}/config.cfg
-      #with_dict: '{{ routers }}'
+    - name: Create SR Config Files
+      template: src=config.cfg.j2 dest=/root/files/{{ vm_name }}/config.cfg
+      # with_dict: '{{ routers }}'
     
     # - name: Create 3 Interface SR Config -- OLD
     #   template: src=config3.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
@@ -49,7 +49,7 @@
         xml: "{{ lookup('template', 'vm_template.xml.j2') }}"
       # with_dict: '{{ KVM5 }}'
     
-    # - name: Defining 4 Interface SR VM's
+    # - name: Defining 4 Interface SR VM's -- OLD
     #   virt:
     #     name: "{{ item.value.vmname }}"
     #     command: define
@@ -57,7 +57,7 @@
     #   run_once: true
     #   with_dict: '{{ KVM4 }}'
   
-    # - name: Defining 3 Interface SR VM's
+    # - name: Defining 3 Interface SR VM's -- OLD
     #   virt:
     #     name: "{{ item.value.vmname }}"
     #     command: define
@@ -65,17 +65,17 @@
     #   run_once: true
     #   with_dict: '{{ KVM3 }}'
     
-    # - name: Copying temporary configuration files into vSIM image
-    #   command: guestfish --rw -a /var/lib/libvirt/images/{{ vm_name }}.qcow2 -m /dev/sda1 copy-in /root/files/{{ vm_name }}/{{ item }} /
-    #   with_items:
-    #   - bof.cfg
-    #   - license.txt
-    #   - config.cfg
+    - name: Copying temporary configuration files into vSIM image
+      command: guestfish --rw -a /var/lib/libvirt/images/{{ vm_name }}.qcow2 -m /dev/sda1 copy-in /root/files/{{ vm_name }}/{{ item }} /
+      with_items:
+      - bof.cfg
+      - license.txt
+      - config.cfg
 
-    # - name: Starting SR VMs
-    #   virt:
-    #     name: "{{ vm_name }}"
-    #     state: running
+    - name: Starting SR VMs
+      virt:
+        name: "{{ vm_name }}"
+        state: running
   
     delegate_to: "{{ target_server }}"
     remote_user: "{{ target_server_username }}"

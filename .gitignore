@@ -1,0 +1,7 @@
+#Ignoring Bogus Files
+SR-Lab-Init/files/*
+OLD_TEMPLATES/*
+
+#Ignoring SR-Lab-Setup
+SR-Lab-Setup/*
+sr-system-setup.yml

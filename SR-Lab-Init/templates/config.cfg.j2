@@ -140,48 +140,29 @@ echo "Router (Network Side) Configuration"
 #--------------------------------------------------
     router Base
 {% if ifcount == 4 %}
-        interface "{{ Intf1}}"
-            address {{ Address1 }}
-            port {{ Port1 }}
+   {% for intf,addr,port in networkcfg %}
+        interface "{{ intf }}"
+            address {{ addr }}
+            port {{ port }}
             no shutdown
         exit
-        interface "{{ Intf2 }}"
-            address {{ Address2 }}
-            port {{ Port2 }}
-            no shutdown
-        exit
-        interface "{{ Intf3 }}"
-            address {{ Address3 }}
-            port {{ Port3 }}
-            no shutdown
-        exit
-        interface "{{ Intf4 }}"
-            address {{ Address4 }}
-            port {{ Port4 }}
-            no shutdown
-        exit
+    {% endfor %}
 {% elif ifcount == 3 %}
-        interface "{{ Intf1}}"
-            address {{ Address1 }}
-            port {{ Port1 }}
+   {% for intf,addr,port in networkcfg %}
+        interface "{{ intf }}"
+            address {{ addr }}
+            port {{ port }}
             no shutdown
         exit
-        interface "{{ Intf2 }}"
-            address {{ Address2 }}
-            port {{ Port2 }}
-            no shutdown
-        exit
-        interface "{{ Intf3 }}"
-            address {{ Address3 }}
-            port {{ Port3 }}
-            no shutdown
-        exit
+    {% endfor %}
 {% elif ifcount == 1 %}
-        interface "{{ Intf1 }}"
-            address {{ Address1 }}
-            port {{ Port1 }}
+   {% for intf,addr,port in networkcfg %}
+        interface "{{ intf }}"
+            address {{ addr }}
+            port {{ port }}
             no shutdown
         exit
+    {% endfor %}
 {% endif %}
         interface "system"
             no shutdown

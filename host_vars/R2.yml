@@ -19,15 +19,8 @@ bridges:
 #[base_config_file]
 ifcount: 4
 routername: P2
-Intf1: P2-to-P1
-Address1: 1.1.2.2/30
-Port1: 1/1/c2/1 
-Intf2: P2-to-P3
-Address2: 1.2.3.1/30
-Port2: 1/1/c4/1 
-Intf3: P2-to-P4
-Address3: 1.2.4.1/30
-Port3: 1/1/c3/1 
-Intf4: P2-to-PE2
-Address4: 1.2.6.1/30
-Port4: 1/1/c1/1
+networkcfg:
+    - [ P2-to-P1, 1.1.2.2/30, 1/1/c2/1 ]
+    - [ P2-to-P3, 1.2.3.1/30, 1/1/c4/1 ]
+    - [ P2-to-P4, 1.2.4.1/30, 1/1/c3/1 ]
+    - [ P2-to-PE2, 1.2.6.1/30, 1/1/c1/1 ]

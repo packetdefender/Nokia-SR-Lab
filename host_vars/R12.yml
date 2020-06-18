@@ -16,6 +16,5 @@ bridges:
 #[base_config_file]
 ifcount: 1
 routername: CE4
-Intf1: CE4-to-PE4
-Address1: 1.8.12.2/30
-Port1: 1/1/c2/1  
+networkcfg:
+    - [ CE4-to-PE4, 1.8.12.2/30, 1/1/c2/1 ]
