@@ -1,5 +1,5 @@
-#Nokia Service Router Lab Turnup.
-###This is a set of playbooks that automates the turn-up of 12 node vSR environment.
+Nokia Service Router Lab Turnup.
+This is a set of playbooks that automates the turn-up of 12 node vSR environment.
 ```
 The key files:
 KVMSetup.yml --> This is a playbook to call the KVM_SETUP role to deploy KVM and packages needed to build environment
