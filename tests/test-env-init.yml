@@ -1,0 +1,6 @@
+---
+    - hosts: SRHosts
+      connection: local
+      become: true
+      roles:
+        - role: ../SR-Lab-Init

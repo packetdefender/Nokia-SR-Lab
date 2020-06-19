@@ -1,4 +1,4 @@
 ---
-  - hosts: SRHosts
+  - hosts: KVMHosts
     roles:
-      - role: SR-Lab-Setup
+      - role: KVM_SETUP

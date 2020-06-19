@@ -1,0 +1,8 @@
+---
+- hosts: KVMHosts
+  #connection: local
+  #become: true
+  roles:
+    - role: ~/github/SR_Ansible/KVM_SETUP
+  #  - role: ~/github/SR_Ansible/SR-Lab-Destroy
+  #  - role: ~/github/SR_Ansible/SR-Lab-Init

@@ -1,0 +1,21 @@
+---
+sudo: required
+
+env:
+    - ANSIBLE_VERSION=latest
+
+# branches:
+#   only:
+#     - master
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible-lint; fi
+
+script:
+  - ansible-playbook tests/test-kvm-setup.yml --syntax-check
+  - ansible-playbook tests/test-env-init.yml --syntax-check
+  - ansible-playbook tests/test-env-destroy.yml --syntax-check
