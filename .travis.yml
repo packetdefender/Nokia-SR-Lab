@@ -24,4 +24,4 @@ script:
   - ansible-playbook tests/test-env-init.yml --syntax-check
   - ansible-playbook tests/test-env-destroy.yml --syntax-check
   - ansible-playbook -i tests/testing_inventory tests/test-env-init.yml --check --skip-tags 'travis_never'
-  - ansible-playbook tests/ansible-playbook tests/test-env-destroy.yml --check --skip-tags 'travis_never'
+  - ansible-playbook -i tests/testing_inventory tests/test-env-destroy.yml --check --skip-tags 'travis_never'
