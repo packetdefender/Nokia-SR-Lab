@@ -5,7 +5,7 @@
         src: sros-vm.qcow2
         dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
       tags: [ 'travis_never' ]
-      
+
     - name: Create Files Folder
       file:
         path: /home/{{ remote_user }}/files/{{ vm_name }}
@@ -15,6 +15,7 @@
       copy:
         src: SR_OS_VSR-SIM_license.txt
         dest: /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
+      tags: [ 'travis_never' ]
 
     - name: Defining Networking
       template: src=bridge.conf.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR mode=0644
