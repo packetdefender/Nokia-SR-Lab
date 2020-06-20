@@ -4,7 +4,8 @@
       copy:
         src: sros-vm.qcow2
         dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
-
+      tags: [ 'travis_never' ]
+      
     - name: Create Files Folder
       file:
         path: /home/{{ remote_user }}/files/{{ vm_name }}

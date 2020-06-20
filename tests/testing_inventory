@@ -1,0 +1,5 @@
+[SRHosts]
+localhost target_server=localhost target_server_username=root remote_user=root 
+
+[KVMHosts]
+localhost

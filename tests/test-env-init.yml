@@ -2,5 +2,7 @@
     - hosts: SRHosts
       connection: local
       become: true
+      vars_files:
+        - localhost.yml
       roles:
         - role: ../SR-Lab-Init

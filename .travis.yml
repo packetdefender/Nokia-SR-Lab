@@ -7,9 +7,9 @@ version: "3.8.2"
 env:
     - ANSIBLE_VERSION=latest
 
-# branches:
-#   only:
-#     - master
+branches:
+  only:
+    - master
 
 before_install:
   - sudo apt-get update -qq
@@ -23,3 +23,5 @@ script:
   - ansible-playbook tests/test-kvm-setup.yml --syntax-check
   - ansible-playbook tests/test-env-init.yml --syntax-check
   - ansible-playbook tests/test-env-destroy.yml --syntax-check
+  - ansible-playbook -i tests/testing_inventory tests/test-env-init.yml --check
+  - ansible-playbook tests/ansible-playbook tests/test-env-destroy.yml --check --skip-tags 'travis_never'

@@ -1,5 +1,7 @@
 # Nokia Service Router Lab Turnup
 
+[![Build Status](https://travis-ci.org/mlossmann/Nokia-SR-Lab.svg?branch=master)](https://travis-ci.org/mlossmann/Nokia-SR-Lab)
+
 This is a set of playbooks that automates the turn-up of 12 node vSR environment.
 
 ```
