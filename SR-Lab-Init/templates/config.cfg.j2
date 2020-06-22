@@ -139,31 +139,21 @@ echo "Management Router Configuration"
 echo "Router (Network Side) Configuration"
 #--------------------------------------------------
     router Base
-{% if ifcount == 4 %}
-   {% for intf,addr,port in networkcfg %}
-        interface "{{ intf }}"
-            address {{ addr }}
-            port {{ port }}
+{% for int_name in phy_interfaces %}
+        interface "{{ int_name.int_name }}"
+            address {{ int_name.ip_addr }}
+            port {{ int_name.port }}
             no shutdown
         exit
-    {% endfor %}
-{% elif ifcount == 3 %}
-   {% for intf,addr,port in networkcfg %}
-        interface "{{ intf }}"
-            address {{ addr }}
-            port {{ port }}
+{% endfor %}
+
+{% for loop_name in loopbacks %}
+        interface "{{ loop_name.loop_name }}"
+            address {{ loop_name.ip_addr }}
+            loopback
             no shutdown
         exit
-    {% endfor %}
-{% elif ifcount == 1 %}
-   {% for intf,addr,port in networkcfg %}
-        interface "{{ intf }}"
-            address {{ addr }}
-            port {{ port }}
-            no shutdown
-        exit
-    {% endfor %}
-{% endif %}
+{% endfor %}
         interface "system"
             no shutdown
         exit

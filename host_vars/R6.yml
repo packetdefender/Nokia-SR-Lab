@@ -17,7 +17,18 @@ bridges:
 #[base_config_file]
 ifcount: 3
 routername: PE2
-networkcfg:
-    - [ PE2-to-P2, 1.2.6.2/30, 1/1/c1/1 ]
-    - [ PE2-to-PE1, 1.5.6.2/30, 1/1/c3/1 ]
-    - [ PE2-to-CE2, 1.6.10.1/30, 1/1/c2/1 ]
+phy_interfaces:
+    - int_name: PE2-to-P2 
+      ip_addr: 1.2.6.2/30 
+      port: 1/1/c1/1
+    - int_name: PE2-to-PE1 
+      ip_addr: 1.5.6.2/30 
+      port: 1/1/c3/1
+    - int_name: PE2-to-CE2 
+      ip_addr: 1.6.10.1/30 
+      port: 1/1/c2/1
+loopbacks:
+    - loop_name: Loopback1 
+      ip_addr: 100.1.1.6/32
+    - loop_name: Loopback2
+      ip_addr: 100.2.2.6/32
