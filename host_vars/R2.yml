@@ -17,19 +17,18 @@ bridges:
 
 
 #[base_config_file]
-ifcount: 4
 routername: P2
 phy_interfaces:
-  - int_name: P2-to-P1 
+  - int_name: To-P1 
     ip_addr: 1.1.2.2/30 
     port: 1/1/c2/1
-  - int_name: P2-to-P3 
+  - int_name: To-P3 
     ip_addr: 1.2.3.1/30 
     port: 1/1/c4/1
-  - int_name: P2-to-P4 
+  - int_name: To-P4 
     ip_addr: 1.2.4.1/30 
     port: 1/1/c3/1
-  - int_name: P2-to-PE2 
+  - int_name: To-PE2 
     ip_addr: 1.2.6.1/30 
     port: 1/1/c1/1
 loopbacks:
@@ -37,3 +36,5 @@ loopbacks:
     ip_addr: 100.1.1.2/32
   - loop_name: Loopback2 
     ip_addr: 100.2.2.2/32
+sys_ip:
+    - ip_addr: 172.17.0.2/32

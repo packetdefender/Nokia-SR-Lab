@@ -15,16 +15,15 @@ bridges:
     - R5R6-BR
 
 #[base_config_file]
-ifcount: 3
 routername: PE1
 phy_interfaces:
-    - int_name: PE1-to-P1 
+    - int_name: To-P1 
       ip_addr: 1.1.5.2/30 
       port: 1/1/c1/1
-    - int_name: PE1-to-PE2 
+    - int_name: To-PE2 
       ip_addr: 1.5.6.1/30 
       port: 1/1/c3/1
-    - int_name: PE1-to-CE1 
+    - int_name: To-CE1 
       ip_addr: 1.5.9.1/30 
       port: 1/1/c2/1
 loopbacks:
@@ -32,3 +31,5 @@ loopbacks:
       ip_addr: 100.1.1.5/32
     - loop_name: Loopback5 
       ip_addr: 100.2.2.5/32
+sys_ip:
+    - ip_addr: 172.16.0.5/32
