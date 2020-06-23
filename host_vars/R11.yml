@@ -15,10 +15,9 @@ bridges:
 
 
 #[base_config_file]
-ifcount: 1
 routername: CE3
 phy_interfaces:
-    - int_name: CE3-to-PE3 
+    - int_name: To-PE3 
       ip_addr: 1.7.11.2/30
       port: 1/1/c2/1
 loopbacks:
@@ -26,3 +25,5 @@ loopbacks:
       ip_addr: 100.1.1.11/32
     - loop_name: Loopback2
       ip_addr: 100.2.2.11/32
+sys_ip:
+    - ip_addr: 172.18.0.11/32

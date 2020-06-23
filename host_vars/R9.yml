@@ -14,10 +14,9 @@ bridges:
     - R5R9-BR
 
 #[base_config_file]
-ifcount: 1
 routername: CE1
 phy_interfaces:
-    - int_name: CE1-to-PE1
+    - int_name: To-PE1
       ip_addr: 1.5.9.2/30 
       port: 1/1/c2/1
 loopbacks:
@@ -25,3 +24,5 @@ loopbacks:
       ip_addr: 100.1.1.9/32
     - loop_name: Loopback2 
       ip_addr: 100.2.2.9/32
+sys_ip:
+    - ip_addr: 172.16.0.9/32

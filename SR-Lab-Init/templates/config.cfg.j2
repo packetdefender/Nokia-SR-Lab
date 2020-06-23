@@ -154,9 +154,12 @@ echo "Router (Network Side) Configuration"
             no shutdown
         exit
 {% endfor %}
+{% for sys in sys_ip %} 
         interface "system"
+            address {sys.ip_addr}
             no shutdown
         exit
+{% endfor %}
     exit
 #--------------------------------------------------
 echo "Service Configuration"
