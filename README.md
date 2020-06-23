@@ -39,5 +39,7 @@ phy_interfaces:
 loopbacks:
     - loop_name: 
       ip_addr: 
+sys_ip:
+    - ip_addr: 
 ```
 If you would like to modify any part of the interface configuration, please edit the individual router host_var files.
