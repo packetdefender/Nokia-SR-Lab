@@ -156,7 +156,7 @@ echo "Router (Network Side) Configuration"
 {% endfor %}
 {% for sys in sys_ip %} 
         interface "system"
-            address {sys.ip_addr}
+            address {{ sys.ip_addr }}
             no shutdown
         exit
 {% endfor %}
