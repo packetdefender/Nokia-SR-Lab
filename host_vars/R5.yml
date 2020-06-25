@@ -29,7 +29,7 @@ phy_interfaces:
 loopbacks:
     - loop_name: Loopback1 
       ip_addr: 100.1.1.5/32
-    - loop_name: Loopback5 
+    - loop_name: Loopback2 
       ip_addr: 100.2.2.5/32
 sys_ip:
     - ip_addr: 172.16.0.5/32
