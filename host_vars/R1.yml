@@ -16,7 +16,6 @@ bridges:
     - R1R4-BR
 
 #[base_config_file]
-ifcount: 4
 routername: P1
 phy_interfaces:
     - int_name: To-P2 
