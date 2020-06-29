@@ -8,22 +8,22 @@ numbr: 3
 vmname: R12
 qcow_image: R12
 desc: R12_XML_FILE
-bridges: 
-    - MGMT-BR
-    - MGMT-BR
-    - R8R12-BR
-uuid: 0348a9b7-0e9f-49ae-b500-a10eaa259355
+bridges:
+  - MGMT-BR
+  - MGMT-BR
+  - R8R12-BR
+uuid: 9ab62a26-61bb-4b12-9cb6-57a6e8db8dde
 
 #[base_config_file]
 routername: CE4
 phy_interfaces:
-    - int_name: To-PE4
-      ip_addr: 1.8.12.2/30
-      port: 1/1/c2/1
+  - int_name: To-PE4
+    ip_addr: 1.8.12.2/30
+    port: 1/1/c2/1
 loopbacks:
-    - loop_name: Loopback1
-      ip_addr: 100.1.1.12/32
-    - loop_name: Loopback2
-      ip_addr: 100.2.2.12/32
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.12/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.12/32
 sys_ip:
-    - ip_addr: 172.19.0.12/32
+  - ip_addr: 172.19.0.12/32

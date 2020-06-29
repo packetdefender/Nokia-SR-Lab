@@ -4,33 +4,33 @@ vsr_mgmt: 10.0.12.20
 vsr_mgmt_gw: 10.0.12.1
 
 #[base_config_kvm]
-numbr: 4 
+numbr: 4
 vmname: R6
 qcow_image: R6
 desc: R6_XML_FILE
-bridges: 
-    - MGMT-BR
-    - R2R6-BR
-    - R6R10-BR
-    - R5R6-BR
-uuid: 2e9ddceb-982c-406a-95c1-e1d91cbf10c7
+bridges:
+  - MGMT-BR
+  - R2R6-BR
+  - R6R10-BR
+  - R5R6-BR
+uuid: 1ddf10e6-d06e-4f7f-8507-a5e902a85785
 
 #[base_config_file]
 routername: PE2
 phy_interfaces:
-    - int_name: To-P2 
-      ip_addr: 1.2.6.2/30 
-      port: 1/1/c1/1
-    - int_name: To-PE1 
-      ip_addr: 1.5.6.2/30 
-      port: 1/1/c3/1
-    - int_name: To-CE2 
-      ip_addr: 1.6.10.1/30 
-      port: 1/1/c2/1
+  - int_name: To-P2
+    ip_addr: 1.2.6.2/30
+    port: 1/1/c1/1
+  - int_name: To-PE1
+    ip_addr: 1.5.6.2/30
+    port: 1/1/c3/1
+  - int_name: To-CE2
+    ip_addr: 1.6.10.1/30
+    port: 1/1/c2/1
 loopbacks:
-    - loop_name: Loopback1 
-      ip_addr: 100.1.1.6/32
-    - loop_name: Loopback2
-      ip_addr: 100.2.2.6/32
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.6/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.6/32
 sys_ip:
-    - ip_addr: 172.17.0.6/32
+  - ip_addr: 172.17.0.6/32
