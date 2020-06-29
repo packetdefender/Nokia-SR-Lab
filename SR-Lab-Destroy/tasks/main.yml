@@ -1,11 +1,13 @@
 ---
 - name: Destroying SR VMs
+  ignore_errors: yes
   virt:
     name: "{{ item.name }}"
     state: destroyed
   with_items: '{{ VM }}'
 
 - name: Undefining SR VMs
+  ignore_errors: yes
   virt:
     name: "{{ item.name }}"
     command: undefine
@@ -15,7 +17,7 @@
   command: ifdown ifcfg-{{ item.key }}-BR
   with_dict: "{{ netwk }}"
 
-- name: Delete SR-Lab Bridge Ports
+- name: Delete SR-Lab Bridge Ports 
   file: path=/etc/sysconfig/network-scripts/ifcfg-{{ item.key }}-BR state=absent
   with_dict: "{{ netwk }}" 
 
@@ -25,9 +27,9 @@
 
 - name: Remove Created files directories
   file: 
-    path: /root/files/{{ item.name }}
+    path: /home/{{ remote_user }}/files/{{ item.name }}
     state: absent
-  with_items: "{{ VM }}"
+  with_items: "{{ VM }}" 
 
 - name: Reboot Server
   reboot:
