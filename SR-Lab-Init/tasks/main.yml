@@ -52,7 +52,8 @@
         after: "<name>.*</name>"
         regexp: "<uuid>.*</uuid>"
         replace: '<uuid>{{ uuid }}</uuid>'
-
+      tags: [ 'travis_never' ]
+      
     - name: Starting SR VMs
       virt:
         name: "{{ vm_name }}"
