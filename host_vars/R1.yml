@@ -8,33 +8,33 @@ numbr: 5
 vmname: R1
 qcow_image: R1
 desc: R1_XML_FILE
-bridges: 
-    - MGMT-BR
-    - R1R5-BR
-    - R1R2-BR
-    - R1R3-BR
-    - R1R4-BR
-uuid: 1af49569-d447-4b5d-8df0-29f77513b96c
+bridges:
+  - MGMT-BR
+  - R1R5-BR
+  - R1R2-BR
+  - R1R3-BR
+  - R1R4-BR
+uuid: 8478c46b-0a8d-4388-85ba-e0524e4680f6
 
 #[base_config_file]
 routername: P1
 phy_interfaces:
-    - int_name: To-P2 
-      ip_addr: 1.1.2.1/30
-      port: 1/1/c2/1
-    - int_name: To-P3
-      ip_addr: 1.1.3.1/30
-      port: 1/1/c3/1 
-    - int_name: To-P4 
-      ip_addr: 1.1.4.1/30 
-      port: 1/1/c4/1
-    - int_name: To-PE1 
-      ip_addr: 1.1.5.1/30
-      port: 1/1/c1/1
+  - int_name: To-P2
+    ip_addr: 1.1.2.1/30
+    port: 1/1/c2/1
+  - int_name: To-P3
+    ip_addr: 1.1.3.1/30
+    port: 1/1/c3/1
+  - int_name: To-P4
+    ip_addr: 1.1.4.1/30
+    port: 1/1/c4/1
+  - int_name: To-PE1
+    ip_addr: 1.1.5.1/30
+    port: 1/1/c1/1
 loopbacks:
-    - loop_name: Loopback1
-      ip_addr: 100.1.1.1/32
-    - loop_name: Loopback2
-      ip_addr: 100.2.2.1/32
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.1/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.1/32
 sys_ip:
-    - ip_addr: 172.16.0.1/32
+  - ip_addr: 172.16.0.1/32

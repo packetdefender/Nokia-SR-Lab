@@ -8,33 +8,33 @@ numbr: 5
 vmname: R3
 qcow_image: R3
 desc: R3_XML_FILE
-bridges: 
-    - MGMT-BR
-    - R3R7-BR
-    - R3R4-BR
-    - R1R3-BR
-    - R2R3-BR
-uuid: bed5bcb9-7fcf-41b0-b2a2-41cc9586e06d
+bridges:
+  - MGMT-BR
+  - R3R7-BR
+  - R3R4-BR
+  - R1R3-BR
+  - R2R3-BR
+uuid: 0b670be2-f6b8-4a2a-b700-8686482bf0c9
 
 #[base_config_file]
 routername: P3
 phy_interfaces:
-    - int_name: To-P1 
-      ip_addr: 1.1.3.2/30 
-      port: 1/1/c3/1
-    - int_name: To-P2 
-      ip_addr: 1.2.3.2/30 
-      port: 1/1/c4/1
-    - int_name: To-P4 
-      ip_addr: 1.3.4.1/30 
-      port: 1/1/c2/1
-    - int_name: To-PE3 
-      ip_addr: 1.3.7.1/30 
-      port: 1/1/c1/1
+  - int_name: To-P1
+    ip_addr: 1.1.3.2/30
+    port: 1/1/c3/1
+  - int_name: To-P2
+    ip_addr: 1.2.3.2/30
+    port: 1/1/c4/1
+  - int_name: To-P4
+    ip_addr: 1.3.4.1/30
+    port: 1/1/c2/1
+  - int_name: To-PE3
+    ip_addr: 1.3.7.1/30
+    port: 1/1/c1/1
 loopbacks:
-    - loop_name: Loopback1 
-      ip_addr: 100.1.1.3/32
-    - loop_name: Loopback2 
-      ip_addr: 100.2.2.3/32
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.3/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.3/32
 sys_ip:
-    - ip_addr: 172.18.0.3/32
+  - ip_addr: 172.18.0.3/32

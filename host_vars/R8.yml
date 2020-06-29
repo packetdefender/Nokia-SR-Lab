@@ -8,29 +8,29 @@ numbr: 4
 vmname: R8
 qcow_image: R8
 desc: R8_XML_FILE
-bridges: 
-    - MGMT-BR
-    - R4R8-BR
-    - R8R12-BR
-    - R7R8-BR
-uuid: eea29100-7579-4f3b-8719-692e271683b4
+bridges:
+  - MGMT-BR
+  - R4R8-BR
+  - R8R12-BR
+  - R7R8-BR
+uuid: ebfd9ff3-b8f8-4aeb-99b8-956a4a149f38
 
 #[base_config_file]
 routername: PE4
 phy_interfaces:
-    - int_name: To-P4 
-      ip_addr: 1.4.8.2/30 
-      port: 1/1/c1/1
-    - int_name: To-PE3 
-      ip_addr: 1.7.8.2/30 
-      port: 1/1/c3/1
-    - int_name: To-CE4 
-      ip_addr: 1.8.12.1/30 
-      port: 1/1/c2/1
+  - int_name: To-P4
+    ip_addr: 1.4.8.2/30
+    port: 1/1/c1/1
+  - int_name: To-PE3
+    ip_addr: 1.7.8.2/30
+    port: 1/1/c3/1
+  - int_name: To-CE4
+    ip_addr: 1.8.12.1/30
+    port: 1/1/c2/1
 loopbacks:
-    - loop_name: Loopback1 
-      ip_addr: 100.1.1.8/32 
-    - loop_name: Loopback2 
-      ip_addr: 100.2.2.8/32 
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.8/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.8/32
 sys_ip:
-    - ip_addr: 172.19.0.8/32 
+  - ip_addr: 172.19.0.8/32

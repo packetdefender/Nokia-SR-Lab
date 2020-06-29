@@ -1,34 +1,25 @@
 ---
-    - name: Install required packages
-      yum:
-        name: "{{ packages }}"
-        state: present
-      vars:
-        packages:
-          - git
-          - libvirt
-          - qemu-kvm
-          - libvirt-python
-          - libguestfs-tools
-          - virt-install
-          - wget
-          - curl
-          - tcpdump
-          - zsh
-    - name: Check for .zshrc
-      stat:
-        path: ~/.zshrc
-      register: stat_rc_result
-    - name: Check for .oh-my-zsh
-      stat:
-        path: ~/.oh-my-zsh
-      register: stat_oh_my_zsh_result
-    - name: Install OhMyZSH
-      git:
-        repo: https://github.com/robbyrussell/oh-my-zsh
-        dest: ~/.oh-my-zsh
-      when: not stat_oh_my_zsh_result.stat.exists
-    - name: Create new .zshrc
-      copy: src=~/.oh-my-zsh/template/zshrc.zsh-template
-        dest=~/.zshrc
-      when: not stat_rc_result.stat.exists
+- name: Install required packages
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - git
+      - libvirt
+      - qemu-kvm
+      - libvirt-python
+      - libguestfs-tools
+      - virt-install
+      - wget
+      - curl
+      - tcpdump
+      - python3-pip
+
+- name: Install PIP Dependencies
+  pip:
+    name:
+      - ruamel.yaml<=0.15
+    executable: pip3
+    state: latest
+    

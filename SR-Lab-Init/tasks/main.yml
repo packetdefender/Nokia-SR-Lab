@@ -11,7 +11,7 @@
         path: /home/{{ remote_user }}/files/{{ vm_name }}
         state: directory
 
-    - name: Copy license from home directory to /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
+    - name: Copy license from home directory to project folder
       copy:
         src: '{{vm_name}}.txt'
         dest: /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
@@ -35,7 +35,6 @@
 
     - name: Generate XML Files for SR Devices
       virt:
-        name: "{{ vmname }}"
         command: define
         xml: "{{ lookup('template', 'vm_template.xml.j2') }}"
 

@@ -9,22 +9,22 @@ numbr: 3
 vmname: R9
 qcow_image: R9
 desc: R9_XML_FILE
-bridges: 
-    - MGMT-BR
-    - MGMT-BR
-    - R5R9-BR
-uuid: 96f5ef82-d45d-4628-b9f6-259345e90768
+bridges:
+  - MGMT-BR
+  - MGMT-BR
+  - R5R9-BR
+uuid: 13c3ab2a-e51b-4c8a-9784-c1a128e7261b
 
 #[base_config_file]
 routername: CE1
 phy_interfaces:
-    - int_name: To-PE1
-      ip_addr: 1.5.9.2/30 
-      port: 1/1/c2/1
+  - int_name: To-PE1
+    ip_addr: 1.5.9.2/30
+    port: 1/1/c2/1
 loopbacks:
-    - loop_name: Loopback1 
-      ip_addr: 100.1.1.9/32
-    - loop_name: Loopback2 
-      ip_addr: 100.2.2.9/32
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.9/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.9/32
 sys_ip:
-    - ip_addr: 172.16.0.9/32
+  - ip_addr: 172.16.0.9/32

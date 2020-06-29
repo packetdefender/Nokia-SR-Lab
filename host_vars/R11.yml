@@ -9,22 +9,22 @@ numbr: 3
 vmname: R11
 qcow_image: R11
 desc: R11_XML_FILE
-bridges: 
-    - MGMT-BR
-    - MGMT-BR
-    - R7R11-BR
-uuid: 8db35647-0dd3-44d8-a8a3-ab490f9924c4
+bridges:
+  - MGMT-BR
+  - MGMT-BR
+  - R7R11-BR
+uuid: 349734e8-4b8e-494f-a1f3-66febf05d006
 
 #[base_config_file]
 routername: CE3
 phy_interfaces:
-    - int_name: To-PE3 
-      ip_addr: 1.7.11.2/30
-      port: 1/1/c2/1
+  - int_name: To-PE3
+    ip_addr: 1.7.11.2/30
+    port: 1/1/c2/1
 loopbacks:
-    - loop_name: Loopback1 
-      ip_addr: 100.1.1.11/32
-    - loop_name: Loopback2
-      ip_addr: 100.2.2.11/32
+  - loop_name: Loopback1
+    ip_addr: 100.1.1.11/32
+  - loop_name: Loopback2
+    ip_addr: 100.2.2.11/32
 sys_ip:
-    - ip_addr: 172.18.0.11/32
+  - ip_addr: 172.18.0.11/32
