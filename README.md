@@ -14,7 +14,7 @@ DestroyEnv.yml --> Destroys and deletes all VMs, files created and all defined n
 
 *User needs to supply SR Image and SR License file*.
 
-Before running InitalizeSREnv.yml playbook, in the project root directory `uuid_gen.py` needs to be envoked.  It will ask how many devices are you going to intanciate (right now the maximum is 12) and it will supply UUIDs for all devices.
+Before running InitalizeSREnv.yml playbook, in the project root directory `uuid_gen.py` needs to be invoked.  It will ask how many devices are you going to intanciate (right now the maximum is 12) and it will supply UUIDs for all devices.
 
 Create folder named files in the following location `~/SR-Lab-Init/` and copy qcow2 image and license file to that directory so scripts can copy files accordingly
 
