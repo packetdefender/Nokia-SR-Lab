@@ -3,6 +3,7 @@ vm_name: R10
 vsr_mgmt: 10.0.12.24
 vsr_mgmt_gw: 10.0.12.1
 
+
 #[base_config_kvm]
 numbr: 3
 vmname: R10
@@ -12,6 +13,7 @@ bridges:
     - MGMT-BR
     - MGMT-BR
     - R6R10-BR
+uuid: 1d83d920-5d95-4dd0-8ff8-79c82c762787
 
 #[base_config_file]
 routername: CE2

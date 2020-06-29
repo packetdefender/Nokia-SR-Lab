@@ -14,6 +14,7 @@ bridges:
     - R3R4-BR
     - R1R3-BR
     - R2R3-BR
+uuid: bed5bcb9-7fcf-41b0-b2a2-41cc9586e06d
 
 #[base_config_file]
 routername: P3

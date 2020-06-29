@@ -3,6 +3,7 @@ vm_name: R11
 vsr_mgmt: 10.0.12.25
 vsr_mgmt_gw: 10.0.12.1
 
+
 #[base_config_kvm]
 numbr: 3
 vmname: R11
@@ -12,7 +13,7 @@ bridges:
     - MGMT-BR
     - MGMT-BR
     - R7R11-BR
-
+uuid: 8db35647-0dd3-44d8-a8a3-ab490f9924c4
 
 #[base_config_file]
 routername: CE3

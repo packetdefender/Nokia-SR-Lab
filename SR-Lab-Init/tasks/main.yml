@@ -1,6 +1,6 @@
 ---
 - block:
-    - name: Copy SR image from root to /var/lib/libvirt/images
+    - name: Copy SR image from home directory to /var/lib/libvirt/images
       copy:
         src: sros-vm.qcow2
         dest: /var/lib/libvirt/images/{{ vm_name }}.qcow2
@@ -11,7 +11,7 @@
         path: /home/{{ remote_user }}/files/{{ vm_name }}
         state: directory
 
-    - name: Copy license
+    - name: Copy license from home directory to /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
       copy:
         src: SR_OS_VSR-SIM_license.txt
         dest: /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
@@ -33,39 +33,11 @@
     - name: Create SR Config Files
       template: src=config.cfg.j2 dest=/home/{{ remote_user }}/files/{{ vm_name }}/config.cfg
 
-      # with_dict: '{{ routers }}'
-    # - name: Create 3 Interface SR Config -- OLD
-    #   template: src=config3.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
-    #   run_once: True
-    #   with_dict: '{{ SR3 }}'
-
-    # - name: Create 1 Interface SR Config  -- OLD
-    #   template: src=config1.cfg.j2 dest=/root/files/{{ item.key }}/config.cfg
-    #   run_once: True
-    #   with_dict: '{{ SR1 }}'
-
-    - name: Defining XML Files for SR VM's
+    - name: Generate XML Files for SR Devices
       virt:
         name: "{{ vmname }}"
         command: define
         xml: "{{ lookup('template', 'vm_template.xml.j2') }}"
-
-      # with_dict: '{{ KVM5 }}'
-    # - name: Defining 4 Interface SR VM's -- OLD
-    #   virt:
-    #     name: "{{ item.value.vmname }}"
-    #     command: define
-    #     xml: "{{ lookup('template', 'vm_template5.xml.j2') }}"
-    #   run_once: true
-    #   with_dict: '{{ KVM4 }}'
-
-    # - name: Defining 3 Interface SR VM's -- OLD
-    #   virt:
-    #     name: "{{ item.value.vmname }}"
-    #     command: define
-    #     xml: "{{ lookup('template', 'vm_template5.xml.j2') }}"
-    #   run_once: true
-    #   with_dict: '{{ KVM3 }}'
 
     - name: Copying temporary configuration files into vSIM image
       command: guestfish --rw -a /var/lib/libvirt/images/{{ vm_name }}.qcow2 -m /dev/sda1 copy-in /home/{{ remote_user }}/files/{{ vm_name }}/{{ item }} /
@@ -74,10 +46,17 @@
         - license.txt
         - config.cfg
 
+    - name: UUID Validation
+      replace:
+        path: /etc/libvirt/qemu/{{vmname}}.xml
+        after: "<name>.*</name>"
+        regexp: "<uuid>.*</uuid>"
+        replace: '<uuid>{{ uuid_all }}</uuid>'
+
     - name: Starting SR VMs
       virt:
         name: "{{ vm_name }}"
         state: running
 
   delegate_to: "{{ target_server }}"
-  remote_user: "{{ target_server_username }}"
+  remote_user: "{{ remote_user }}"

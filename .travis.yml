@@ -7,9 +7,9 @@ version: "3.8.2"
 env:
     - ANSIBLE_VERSION=latest
 
-branches:
-  only:
-    - master
+# branches:
+#   only:
+#     - master
 
 before_install:
   - sudo apt-get update -qq

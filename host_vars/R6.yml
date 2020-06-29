@@ -13,6 +13,7 @@ bridges:
     - R2R6-BR
     - R6R10-BR
     - R5R6-BR
+uuid: 2e9ddceb-982c-406a-95c1-e1d91cbf10c7
 
 #[base_config_file]
 routername: PE2

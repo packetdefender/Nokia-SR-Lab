@@ -29,13 +29,13 @@ In `~/group_vars/` directory there are two files where the ansible orchestration
 
 In `~/group_vars/SRHosts.yml` the variable `remote_user` should also be changed to your ansible orchestration username.  There are tasks that will pull this variable in when creating folders and copying information.
 
-in `~/host_vars/` each router has their BoF address defined with the gateway {vsr_mgmt} and {vsr_mgmt_gw}. Be sure to modify those fields for your specific BoF configuration.  Also each router has its interface configuration laid out in the following list:
+in `~/host_vars/` each router has their BoF address defined with the gateway {vsr_mgmt} and {vsr_mgmt_gw}. Be sure to modify those fields for your specific BoF configuration.  Also each router has its interface configuration laid out in the following list along with the UUID:
 ```
+uuid: 
 phy_interfaces:
     - int_name: 
       ip_addr: 
       port: 
-  ----
 loopbacks:
     - loop_name: 
       ip_addr: 
