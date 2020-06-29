@@ -13,6 +13,7 @@ bridges:
     - R1R5-BR
     - R5R9-BR
     - R5R6-BR
+uuid: 676be0dc-0f36-4482-bf84-e2baec8996d3
 
 #[base_config_file]
 routername: PE1

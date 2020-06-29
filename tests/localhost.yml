@@ -15,6 +15,7 @@ bridges:
     - R1R2-BR
     - R1R3-BR
     - R1R4-BR
+uuid: 676be0dc-0f36-4482-bf84-e2baec8996d3
 
 #[base_config_file]
 ifcount: 4

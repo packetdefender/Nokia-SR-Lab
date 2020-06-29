@@ -14,6 +14,7 @@ bridges:
     - R1R2-BR
     - R1R3-BR
     - R1R4-BR
+uuid: 1af49569-d447-4b5d-8df0-29f77513b96c
 
 #[base_config_file]
 routername: P1
