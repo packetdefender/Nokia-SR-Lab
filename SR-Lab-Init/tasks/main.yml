@@ -13,7 +13,7 @@
 
     - name: Copy license from home directory to /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
       copy:
-        src: SR_OS_VSR-SIM_license.txt
+        src: '{{vm_name}}.txt'
         dest: /home/{{ remote_user }}/files/{{ vm_name }}/license.txt
       tags: [ 'travis_never' ]
 
@@ -45,14 +45,6 @@
         - bof.cfg
         - license.txt
         - config.cfg
-
-    - name: UUID Validation
-      replace:
-        path: /etc/libvirt/qemu/{{vmname}}.xml
-        after: "<name>.*</name>"
-        regexp: "<uuid>.*</uuid>"
-        replace: '<uuid>{{ uuid }}</uuid>'
-      tags: [ 'travis_never' ]
       
     - name: Starting SR VMs
       virt:
