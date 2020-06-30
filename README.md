@@ -29,10 +29,9 @@ In `~/group_vars/` directory there are two files where the ansible orchestration
 >>ansible_ssh_user > Change to your ansible user account
 ```
 
-In `~/host_vars/` each router has their BoF address defined with the gateway {vsr_mgmt} and {vsr_mgmt_gw}. Be sure to modify those fields for your specific BoF configuration.  Also each router has its interface configuration laid out in the following list along with the UUID:
+In `~/host_vars/` each router has their BoF address defined with the gateway {vsr_mgmt} and {vsr_mgmt_gw}. Be sure to modify those fields for your specific BoF configuration.  Also each router has its interface configuration laid out in the following list:
 
 ```bash
-uuid:
 phy_interfaces:
     - int_name:
       ip_addr:
