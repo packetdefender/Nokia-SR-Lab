@@ -4,7 +4,6 @@ vsr_mgmt: 10.0.12.22
 vsr_mgmt_gw: 10.0.12.1
 
 #[base_config_kvm]
-numbr: 4
 vmname: R8
 qcow_image: R8
 desc: R8_XML_FILE

@@ -4,7 +4,6 @@ vsr_mgmt: 10.0.12.18
 vsr_mgmt_gw: 10.0.12.1
 
 #[base_config_kvm]
-numbr: 5
 vmname: R4
 qcow_image: R4
 desc: R4_XML_FILE

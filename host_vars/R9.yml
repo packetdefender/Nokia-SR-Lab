@@ -5,7 +5,6 @@ vsr_mgmt_gw: 10.0.12.1
 
 
 #[base_config_kvm]
-numbr: 3
 vmname: R9
 qcow_image: R9
 desc: R9_XML_FILE

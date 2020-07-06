@@ -5,7 +5,6 @@ vsr_mgmt_gw: 10.0.12.1
 
 
 #[base_config_kvm]
-numbr: 3
 vmname: R10
 qcow_image: R10
 desc: R10_XML_FILE
