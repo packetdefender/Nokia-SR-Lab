@@ -14,9 +14,17 @@ DestroyEnv.yml --> Destroys and deletes all VMs, files created and all defined n
 
 *User needs to supply SR Image and SR License file*.
 
-Before running InitalizeSREnv.yml playbook, in the project root directory `uuid_gen.py` needs to be invoked.  It will ask how many devices are you going to intanciate (right now the maximum is 12) and it will supply UUIDs for all devices.
-
 Create folder named files in the following location `~/SR-Lab-Init/` and copy qcow2 image and license file to that directory so scripts can copy files accordingly
+
+Before running InitalizeSREnv.yml playbook, there are three Python scripts you can choose to run that are located in the project root directory:
+
+```bash
+uuid_gen.py --> This will randomly generate n number of UUIDs for the vSRs that are going to be instanciated.
+uuid_host.py --> This will randomly generate n number of UUIDs for the vSRs that are going to be instanciated as well as ask the user what the target host is and the ansible username they are using is
+ip_address_assign.py --> This will prompt the user for an IP range where they want to pull management IP adddresses from and will test to see if the address is alive.  If address is free it will modify the routers host_vars file with the address.
+```
+
+If you choose to NOT run the initlization scripts, the files can be manually edited in the following locations:
 
 In `~/group_vars/` directory there are two files where the ansible orchestration username is hardcoded as well as the target server.  Changes should be done at the following locations:
 
@@ -32,6 +40,7 @@ In `~/group_vars/` directory there are two files where the ansible orchestration
 In `~/host_vars/` each router has their BoF address defined with the gateway {vsr_mgmt} and {vsr_mgmt_gw}. Be sure to modify those fields for your specific BoF configuration.  Also each router has its interface configuration laid out in the following list:
 
 ```bash
+uuid:
 phy_interfaces:
     - int_name:
       ip_addr:
