@@ -13,7 +13,7 @@ bridges:
   - R3R4-BR
   - R2R4-BR
   - R1R4-BR
-uuid: 0eee82bb-3548-4c14-85ce-f47dc75add3e
+uuid: d7a6d087-903f-442b-82d3-502d0fc6642d
 
 #[base_config_file]
 routername: P4

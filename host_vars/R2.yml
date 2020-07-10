@@ -13,7 +13,7 @@ bridges:
   - R1R2-BR
   - R2R4-BR
   - R2R3-BR
-uuid: 112c820f-001c-4b80-8254-4266f0b96db5
+uuid: d9de7a83-f4ed-437e-91aa-32bfe3658569
 
 #[base_config_file]
 routername: P2

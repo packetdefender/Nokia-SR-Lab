@@ -12,7 +12,7 @@ bridges:
   - MGMT-BR
   - MGMT-BR
   - R6R10-BR
-uuid: 4765ee8b-f9b5-40cb-aa9b-303cade823a5
+uuid: 999de490-5a21-478d-82dc-036082b2a1f8
 
 #[base_config_file]
 routername: CE2

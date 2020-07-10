@@ -12,7 +12,7 @@ bridges:
   - MGMT-BR
   - MGMT-BR
   - R5R9-BR
-uuid: 13c3ab2a-e51b-4c8a-9784-c1a128e7261b
+uuid: 2e2b7d73-7751-4c35-9851-78a396083682
 
 #[base_config_file]
 routername: CE1

@@ -11,7 +11,7 @@ bridges:
   - MGMT-BR
   - MGMT-BR
   - R8R12-BR
-uuid: 9ab62a26-61bb-4b12-9cb6-57a6e8db8dde
+uuid: 6399f188-78c4-4d70-86a1-61508e433878
 
 #[base_config_file]
 routername: CE4

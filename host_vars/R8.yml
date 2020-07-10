@@ -12,7 +12,7 @@ bridges:
   - R4R8-BR
   - R8R12-BR
   - R7R8-BR
-uuid: ebfd9ff3-b8f8-4aeb-99b8-956a4a149f38
+uuid: c3d9e0b3-8848-454e-a42b-067074bc8b48
 
 #[base_config_file]
 routername: PE4
