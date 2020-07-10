@@ -12,7 +12,7 @@ bridges:
   - MGMT-BR
   - MGMT-BR
   - R7R11-BR
-uuid: 349734e8-4b8e-494f-a1f3-66febf05d006
+uuid: 8acaf190-503f-45d2-a0b0-af28f1e6de4c
 
 #[base_config_file]
 routername: CE3

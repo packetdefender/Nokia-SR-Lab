@@ -12,7 +12,7 @@ bridges:
   - R3R7-BR
   - R7R11-BR
   - R7R8-BR
-uuid: 6285584f-f3c7-401c-b17a-47e0236fd911
+uuid: 365ea1db-d437-46aa-bb5a-458fb0994d29
 
 #[base_config_file]
 routername: PE3
