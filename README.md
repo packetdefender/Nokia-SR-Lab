@@ -22,6 +22,7 @@ Before running InitalizeSREnv.yml playbook, there are three Python scripts you c
 uuid_gen.py --> This will randomly generate n number of UUIDs for the vSRs that are going to be instanciated.
 uuid_host.py --> This will randomly generate n number of UUIDs for the vSRs that are going to be instanciated as well as ask the user what the target host is and the ansible username they are using is
 ip_address_assign.py --> This will prompt the user for an IP range where they want to pull management IP adddresses from and will test to see if the address is alive.  If address is free it will modify the routers host_vars file with the address.
+run_all.py --> Runs all the scripts from above and returns relevent information
 ```
 
 If you choose to NOT run the initlization scripts, the files can be manually edited in the following locations:
